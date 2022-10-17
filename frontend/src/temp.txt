@@ -1,0 +1,71 @@
+
+	const [ storeData, setStoreData ] = useState({});
+
+	useEffect(() => {
+		const getStoreData = async () => {
+			const {data}  = await axios.get('../stores.geojson');
+		    
+			setStoreData(data);
+			console.log(data);
+
+			return data;
+
+
+		};
+
+		getStoreData();
+	}, []);
+
+	const datas = useMemo(() => {
+		return storeData
+	  }, [storeData]);
+
+
+
+
+
+
+	// useEffect(() => {
+	// 	const getStoreData = async () => {
+	// 		const { data } = await axios.get('/api/stores');
+	// 		setStoreData(data.stores);
+	// 		console.log(data.stores);
+	// 	};
+
+	// 	getStoreData();
+	// }, []);
+
+	// const datas = useMemo(
+	// 	() => {
+	// 		return storeData;
+	// 	},
+	// 	[ storeData ]
+	// );
+
+
+
+	  {
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react"
+  },
+  "include": [
+    "src"
+  ]
+}
