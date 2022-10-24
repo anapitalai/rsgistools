@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import ReactMapGL, { Marker, Popup, Source, Layer,LayerProps,NavigationControl,FullscreenControl } from 'react-map-gl';
+import ReactMapGL, { Marker, Popup, Source, Layer,LayerProps,NavigationControl,FullscreenControl,FillLayer } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { dataLayer } from '../map-style'
 
@@ -14,6 +14,10 @@ import ControlPanel from '../components/map-components/ControlPanel';
 
 import { listStores } from '../actions/storeActions';
 // import { STORE_CREATE_RESET } from '../constants/storeConstants';
+
+import {listCorals} from '../actions/coralActions' 
+
+
 
 const pointLayer = {
 	id: 'point',
@@ -109,7 +113,20 @@ function MapScreen({ history, match }) {
 	const dispatch = useDispatch();
 
 	const storeList = useSelector((state) => state.storeList);
-	const { loading, error, stores, page, pages } = storeList;
+	const { loading1, error1, stores, page1, pages1 } = storeList;
+
+	//coral stuff
+	const coralList = useSelector((state) => state.coralList);
+	const { loading, error, corals, page, pages } = coralList;
+
+	useEffect(
+		() => {
+			dispatch(listCorals());
+			console.log(corals)
+		},
+		[ dispatch ]
+	);
+
 
 	useEffect(
 		() => {
@@ -129,38 +146,54 @@ function MapScreen({ history, match }) {
 	};
 
 
-	const b2Layer={
+	const b2Layer:FillLayer={
 		id:"b2",
-		type:"line",
+		type:"fill",
 		source:"route",
 		paint:{
-			'line-color': '#111111'
+			'fill-outline-color': '#111111',
+			'fill-color': '#6e599f',
+			'fill-opacity': 0.75
 		}
 	}
-	const b22Layer={
+	const b22Layer:FillLayer={
 		id:"b22",
-		type:"line",
+		type:"fill",
 		source:"route",
+		'fill-outline-color': '#000000',
+		'fill-color': '#cc599f',
+		'fill-opacity': 0.11,
+
 		paint:{
-			'line-color': '#664433'
+			'fill-outline-color': '#664433',
+			'fill-color': '#fe599f',
+			'fill-opacity': 0.75
+			
 		}
 	}
-	const coralLayer={
+	const coralLayer:FillLayer={
 		id:"route",
-		type:"line",
+		type:"fill",
 		source:"route",
 		paint:{
-			'line-color': '#009988'  //ff0000
+			'fill-outline-color': '#009988',  //ff0000
+			'fill-color': '#6effaa',
+			'fill-opacity': 0.75
 		}
 	}
 
-	const geomLayer={
+	const geomLayer:FillLayer={
 		id:"geom",
-		type:"line",
+		type:"fill",
 		source:"route",
-		paint:{
-			'line-color': '#880088'
-		}
+		paint: {
+			'fill-outline-color': '#484896',
+			'fill-color': '#6e599f',
+			'fill-opacity': 0.75
+		  }
+		// paint:{
+		// 	'line-color': '#880088'
+		// }
 	}
 
 	
@@ -174,6 +207,16 @@ function MapScreen({ history, match }) {
 			<LinkContainer to="/store">
 				<Nav.Link>
 					<i className="fas fa-shopping-cart" /> Add Store
+				</Nav.Link>
+			</LinkContainer>
+			<LinkContainer to="/temperature">
+				<Nav.Link>
+					<i className="fas fa-shopping-cart" /> Add Temperature
+				</Nav.Link>
+			</LinkContainer>
+			<LinkContainer to="/geo">
+				<Nav.Link>
+					<i className="fas fa-shopping-cart" /> Add Coral GeoJSON Data
 				</Nav.Link>
 			</LinkContainer>
 			<ReactMapGL
@@ -201,21 +244,13 @@ function MapScreen({ history, match }) {
 						}><img className='marker' src="/a.png" /></button>
 					</Marker>
 
-				// 	<Marker
-				// 	key={s.storeId}
-				// 	latitude={s.location.coordinates[1]}
-				// 	longitude={s.location.coordinates[0]}
-				//   >
-				// 	<button
-				// 	  className="marker-btn"
-				// 	  onClick={submitHandle}
-					
-				// 	>
-				// 	  <img src="/skateboarding.svg" alt="Skate Park Icon" />
-				// 	</button>
-				//   </Marker>
 				 
 				))}</>)}
+
+
+
+
+
 
              <Source id="route" type="geojson" data={bleachData} >
 				<Layer {...coralLayer} />

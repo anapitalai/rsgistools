@@ -11,6 +11,10 @@ import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import storeRoutes from './routes/storeRoutes.js'
+import coralRoutes from './routes/coralRoutes.js'
+
+
+import temperatureRoutes from './routes/temperatureRoutes.js'
 
 dotenv.config()
 
@@ -24,7 +28,9 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json())
 app.use('/api/stores',storeRoutes)
+app.use('/api/corals',coralRoutes)
 app.use('/api/products', productRoutes)
+app.use('/api/temperatures', temperatureRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)

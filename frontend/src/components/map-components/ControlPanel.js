@@ -6,8 +6,7 @@ const ControlPanel = (props) => {
         <div className="control-panel">
           <h3>Coral Reef Bleaching in PNG</h3>
           <p>
-            Map showing median household income by state in year <b>{year}</b>. Hover over a state to
-            see details.
+            Map showing coral bleached area.
           </p>
  
           <hr />

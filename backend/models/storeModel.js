@@ -23,7 +23,7 @@ const StoreSchema = mongoose.Schema({
       type: [Number],
       index: '2dsphere'
     },
-   // formattedAddress: String
+
   },
   createdAt: {
     type: Date,

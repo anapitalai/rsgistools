@@ -22,6 +22,17 @@ import {
   // productTopRatedReducer,
 } from './reducers/storeReducers'
 
+
+import {
+  coralListReducer,
+  // storeDetailsReducer,
+  // productDeleteReducer,
+  coralCreateReducer,
+  // productUpdateReducer,
+  // productReviewCreateReducer,
+  // productTopRatedReducer,
+} from './reducers/coralReducers'
+
 import { cartReducer } from './reducers/cartReducers'
 import {
   userLoginReducer,
@@ -58,7 +69,8 @@ const reducer = combineReducers({
   //productUpdate: productUpdateReducer,
   //productReviewCreate: productReviewCreateReducer,
   //productTopRated: productTopRatedReducer,
-
+  coralList: coralListReducer,
+  coralCreate: coralCreateReducer,
   //
 
   cart: cartReducer,

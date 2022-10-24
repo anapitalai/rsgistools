@@ -24,6 +24,9 @@ import OrderListScreen from './screens/OrderListScreen'
 
 import MapScreen from './screens/MapScreen'
 import AddStoreScreen from './screens/AddStoreScreen'
+import AddGeojsonScreen from './screens/AddGeojsonScreen'
+
+import AddTemperatureScreen from './screens/AddTemperatureScreen'
 
 
 
@@ -39,8 +42,10 @@ const App = () => {
           <Route path='/placeorder' component={PlaceOrderScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/store' component={AddStoreScreen} />
+          <Route path='/temperature' component={AddTemperatureScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />
+
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/admin/userlist' component={UserListScreen} />
@@ -59,6 +64,11 @@ const App = () => {
           <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
           <Route path='/admin/orderlist' component={OrderListScreen} />
           <Route path='/map' component={MapScreen} />
+          <Route path='/geo' component={AddGeojsonScreen} />
+
+          
+
+      
 
           <Route path='/search/:keyword' component={HomeScreen} exact />
           <Route path='/page/:pageNumber' component={HomeScreen} exact />
@@ -69,6 +79,7 @@ const App = () => {
           />
           <Route path='/' component={HomeScreen} exact />
         </Container>
+      
       </main>
       <Footer />
     </Router>

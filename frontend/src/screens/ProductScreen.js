@@ -83,9 +83,9 @@ const ProductScreen = ({ history, match }) => {
                     value={product.rating}
                     text={`${product.numReviews} reviews`}
                   />
-                </ListGroup.Item>
+                {/* </ListGroup.Item>
                 <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item> */}
                   Description: {product.description}
                 </ListGroup.Item>
               </ListGroup>
@@ -94,12 +94,12 @@ const ProductScreen = ({ history, match }) => {
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
-                    <Row>
+                    {/* <Row>
                       <Col>Price:</Col>
                       <Col>
                         <strong>${product.price}</strong>
                       </Col>
-                    </Row>
+                    </Row> */}
                   </ListGroup.Item>
 
                   <ListGroup.Item>
