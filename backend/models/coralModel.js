@@ -1,36 +1,72 @@
 import mongoose from  'mongoose';
 import geocoder from '../utils/geocoder.js';
+import asyncHandler from 'express-async-handler';
 
-const coordSchema = mongoose.Schema({
-  type:Number
-})
 
-const CoralSchema = mongoose.Schema({
-  coralId: {
-    type: String
+
+const geometrySchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ['Polygon'],
+    required: false
   },
-  coralArea:{
-    type:String
-  },
-  parcel:{
-    type:{
-      type:String,
-      enum:['Polygon']
-    },
-    coordinates: {
-      type: Array,
-      index:'2dpshere'
-    }
-
-  },
-
-  createdAt: {
-    type: Date,
-    default: Date.now
+  coordinates: {
+    type: [[[Number]]],
+    index:'2dsphere',
+    required: false
   }
 });
 
+const propertiesSchema=new mongoose.Schema({
+  type:String,
+  coralId: {
+    type: String,
+    required:false
+  },
+  coralArea:{
+    type:String
+  }
+})
 
-const Coral = mongoose.model('Coral', CoralSchema)
+const featureObjectSchema=new mongoose.Schema({
+  
+  type:{
+    type:String,
+    enum:['Feature'],
+    default:'Feature'
+  },
+  properties:{type:propertiesSchema},
+  geometry:{type:geometrySchema}
+})
+
+const CoralSchema = mongoose.Schema({
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  type:{
+    type:String,
+    enum:['FeatureCollection'],
+    default:'FeatureCollection'
+  },
+  features:{
+     type:[featureObjectSchema]
+  }
+
+});
+
+
+const  Coral = mongoose.model('Coral', CoralSchema);
+
+
+
 
 export default Coral
+
+
+
+
+
+
+
+

@@ -3,9 +3,9 @@ import {
   CORAL_LIST_REQUEST,
   CORAL_LIST_SUCCESS,
   CORAL_LIST_FAIL,
-  // PRODUCT_DETAILS_REQUEST,
-  // PRODUCT_DETAILS_SUCCESS,
-  // PRODUCT_DETAILS_FAIL,
+  CORAL_DETAILS_REQUEST,
+  CORAL_DETAILS_SUCCESS,
+  CORAL_DETAILS_FAIL,
   // PRODUCT_DELETE_SUCCESS,
   // PRODUCT_DELETE_REQUEST,
   // PRODUCT_DELETE_FAIL,
@@ -32,13 +32,16 @@ export const listCorals = (keyword = '', pageNumber = '') => async (
     dispatch({ type: CORAL_LIST_REQUEST })
 
     const { data } = await axios.get(
-      `/api/corals?keyword=${keyword}&pageNumber=${pageNumber}`
+      `/api/corals`
     )
 
     dispatch({
       type: CORAL_LIST_SUCCESS,
-      payload: data,
+      payload: data, 
     })
+//logger 
+    // console.log('DB coral data',data.corals[0].features[0].properties.coralId)
+    console.log('DB',data.corals)
 
   } catch (error) {
     dispatch({
@@ -54,7 +57,30 @@ export const listCorals = (keyword = '', pageNumber = '') => async (
 
 
 
-export const createCoral = (storeId,address,latitude,longitude) => async (dispatch) => {
+
+export const listCoralDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: CORAL_DETAILS_REQUEST })
+
+    const { data } = await axios.get(`/api/corals/${id}`)
+
+    dispatch({
+      type: CORAL_DETAILS_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: CORAL_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+
+export const createCoral = (coralId,coralArea,coordinates) => async (dispatch) => {
   try {
     dispatch({
       type: CORAL_CREATE_REQUEST,
@@ -71,7 +97,7 @@ export const createCoral = (storeId,address,latitude,longitude) => async (dispat
       },
     }
 
-    const { data } = await axios.post(`/api/corals`, {storeId,address,latitude,longitude}) //,config removed
+    const { data } = await axios.post(`/api/corals`, {coralId,coralArea,coordinates},config)
 
     dispatch({
       type: CORAL_CREATE_SUCCESS,

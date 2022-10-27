@@ -25,7 +25,7 @@ import {
 
 import {
   coralListReducer,
-  // storeDetailsReducer,
+  coralDetailsReducer,
   // productDeleteReducer,
   coralCreateReducer,
   // productUpdateReducer,
@@ -71,6 +71,7 @@ const reducer = combineReducers({
   //productTopRated: productTopRatedReducer,
   coralList: coralListReducer,
   coralCreate: coralCreateReducer,
+  coralDetails: coralDetailsReducer,
   //
 
   cart: cartReducer,

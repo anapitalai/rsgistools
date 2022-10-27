@@ -24,7 +24,7 @@ import OrderListScreen from './screens/OrderListScreen'
 
 import MapScreen from './screens/MapScreen'
 import AddStoreScreen from './screens/AddStoreScreen'
-import AddGeojsonScreen from './screens/AddGeojsonScreen'
+import AddCoralScreen from './screens/AddCoralScreen'
 
 import AddTemperatureScreen from './screens/AddTemperatureScreen'
 
@@ -64,7 +64,7 @@ const App = () => {
           <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
           <Route path='/admin/orderlist' component={OrderListScreen} />
           <Route path='/map' component={MapScreen} />
-          <Route path='/geo' component={AddGeojsonScreen} />
+          <Route path='/geo' component={AddCoralScreen} />
 
           
 

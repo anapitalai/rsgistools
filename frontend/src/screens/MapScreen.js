@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Row, Nav } from 'react-bootstrap';
+import { Row, Nav,Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import Message from '../components/Message'
@@ -15,7 +15,7 @@ import ControlPanel from '../components/map-components/ControlPanel';
 import { listStores } from '../actions/storeActions';
 // import { STORE_CREATE_RESET } from '../constants/storeConstants';
 
-import {listCorals} from '../actions/coralActions' 
+import {listCorals} from '../actions/coralActions';
 
 
 
@@ -66,9 +66,23 @@ function MapScreen({ history, match }) {
 		getData();
 	}, []);
 
+
+	//trial
+
+	const [ geojsonData, setGeojsonData ] = useState([]);
+
+	useEffect(() => {
+		const getGeojson = async () => {
+			const { data } = await axios.get('../geojson/geo.geojson');
+			console.log('Polygon data',data)
+			setGeojsonData(data);
+		};
+
+		getGeojson();
+	}, []);
+
  //bleached data
 	const [ bleachData, setBleachData ] = useState([]);
-
 
 
 
@@ -76,7 +90,7 @@ function MapScreen({ history, match }) {
 	useEffect(() => {
 		const getBleachData = async () => {
 			const { data } = await axios.get('../geojson/bleached_180722_4326.geojson');
-			//console.log(data)
+			
 			setBleachData(data);
 		};
 
@@ -107,22 +121,25 @@ function MapScreen({ history, match }) {
 	 }, []);
  
 
-	//const [ storeData, setStoreData ] = useState([]);
 	const pageNumber = match.params.pageNumber || 1;
 
 	const dispatch = useDispatch();
 
 	const storeList = useSelector((state) => state.storeList);
-	const { loading1, error1, stores, page1, pages1 } = storeList;
+	const { loading, error, stores, page, pages } = storeList;
 
 	//coral stuff
 	const coralList = useSelector((state) => state.coralList);
-	const { loading, error, corals, page, pages } = coralList;
+	const { loadingCoral, errorCoral, corals, pageCoral, pagesCoral } = coralList;
+
+	
+
 
 	useEffect(
 		() => {
 			dispatch(listCorals());
-			console.log(corals)
+			
+	
 		},
 		[ dispatch ]
 	);
@@ -133,7 +150,11 @@ function MapScreen({ history, match }) {
 			dispatch(listStores());
 		},
 		[ dispatch ]
+		
 	);
+
+
+
 
 
 	const layerStyle = {
@@ -178,6 +199,17 @@ function MapScreen({ history, match }) {
 		paint:{
 			'fill-outline-color': '#009988',  //ff0000
 			'fill-color': '#6effaa',
+			'fill-opacity': 0.75
+		}
+	}
+
+	const jsonCoralLayer:FillLayer={
+		id:"jsonCoral",
+		type:"fill",
+		source:"route",
+		paint:{
+			'fill-outline-color': '#008899',  //ff0000
+			'fill-color': '#222222',
 			'fill-opacity': 0.75
 		}
 	}
@@ -231,7 +263,6 @@ function MapScreen({ history, match }) {
 			>
 
 
-
 				{loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) :(<>{stores.map(s => (
 
 					<Marker key={s.storeId} latitude={s.location.coordinates[1]} longitude={s.location.coordinates[0]}>
@@ -243,15 +274,46 @@ function MapScreen({ history, match }) {
 							}
 						}><img className='marker' src="/a.png" /></button>
 					</Marker>
-
 				 
 				))}</>)}
 
+{/* {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) :(<>{corals.map((coral) => {
+
+<Source  id="b" type="geojson" data={coral} >
+				<Layer {...jsonCoralLayer} />
+				</Source> 
 
 
+})}</>)} */}
+
+{/* data.corals[0].features[0].properties.coralId) */}
+	{/* <Row>
+            {corals.map((coral) => (
+    <Source key={coral.features[0].properties.coralId}  id="b3" type="geojson" data={corals[0]} >
+	<Layer  {...jsonCoralLayer} />
+	</Source> 
+            ))}
+          </Row>
 
 
+		  <Row>
+            {corals.map((coral) => (
+    <Source key={coral.features[0].properties.coralId}  id="" type="geojson" data={corals[1]} >
+	<Layer  {...coralLayer} />
+	</Source> 
+            ))}
+          </Row>
 
+		  <Row>
+            {corals.map((coral) => (
+    <Source key={coral.features[0].properties.coralId}  id="" type="geojson" data={corals[2]} >
+	<Layer  {...b2Layer} />
+	</Source> 
+            ))}
+          </Row> */}
+
+
+{/* 
              <Source id="route" type="geojson" data={bleachData} >
 				<Layer {...coralLayer} />
 				</Source> 
@@ -261,11 +323,17 @@ function MapScreen({ history, match }) {
 
 				<Source id="geom" type="geojson" data={geomorphicData} >
 				<Layer {...geomLayer} />
-				</Source>
+				</Source>*/}
  
-				<Source id="b2" type="geojson" data={bleach2Data} >
+				<Source id="b2" type="geojson" data={corals[0]} >
 				<Layer {...b2Layer} />
-				</Source>
+				</Source> 
+				<Source id="b22" type="geojson" data={corals[1]} >
+				<Layer {...b22Layer} />
+				</Source> 
+				<Source id="b23" type="geojson" data={corals[2]} >
+				<Layer {...b22Layer} />
+				</Source> 
 
 				{pointData && (
           <Source type="geojson" data={pointData}>
@@ -279,11 +347,6 @@ function MapScreen({ history, match }) {
 <FullscreenControl />
 
 			</ReactMapGL>
-
-		
-			
-
-
 
 			<ControlPanel  />
 			

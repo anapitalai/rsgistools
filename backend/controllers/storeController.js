@@ -24,6 +24,7 @@ const getStores = asyncHandler(async (req, res) => {
 	res.json({ stores, page, pages: Math.ceil(count / pageSize) });
 });
 
+
 // @desc  Create a store
 // @route POST /api/stores
 // @access Public

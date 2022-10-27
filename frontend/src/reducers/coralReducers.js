@@ -3,9 +3,9 @@ import {
   CORAL_LIST_SUCCESS,
   CORAL_LIST_FAIL,
 
-  //STORE_DETAILS_REQUEST,
-  // PRODUCT_DETAILS_SUCCESS,
-  // PRODUCT_DETAILS_FAIL,
+  CORAL_DETAILS_REQUEST,
+  CORAL_DETAILS_SUCCESS,
+  CORAL_DETAILS_FAIL,
   // PRODUCT_DELETE_REQUEST,
   // PRODUCT_DELETE_SUCCESS,
   // PRODUCT_DELETE_FAIL,
@@ -29,16 +29,16 @@ import {
 export const coralListReducer = (state = { corals: [] }, action) => {
   switch (action.type) {
     case CORAL_LIST_REQUEST:
-      return { loading: true, corals: [] }
+      return { loadingCoral: true, corals: [] }
     case CORAL_LIST_SUCCESS:
       return {
-        loading: false,
-        corals: action.payload.stores,
-        pages: action.payload.pages,
-        page: action.payload.page,
+        loadingCoral: false,
+        corals: action.payload.corals,
+        pagesCoral: action.payload.pagesCoral,
+        pageCoral: action.payload.pageCoral,
       }
     case CORAL_LIST_FAIL:
-      return { loading: false, error: action.payload }
+      return { loadingCoral: false, errorCoral: action.payload }
     default:
       return state
   }
@@ -46,21 +46,21 @@ export const coralListReducer = (state = { corals: [] }, action) => {
 
 
 
-// export const storeDetailsReducer = (
-//   state = { product: { reviews: [] } },
-//   action
-// ) => {
-//   switch (action.type) {
-//     case PRODUCT_DETAILS_REQUEST:
-//       return { ...state, loading: true }
-//     case PRODUCT_DETAILS_SUCCESS:
-//       return { loading: false, product: action.payload }
-//     case PRODUCT_DETAILS_FAIL:
-//       return { loading: false, error: action.payload }
-//     default:
-//       return state
-//   }
-// }
+export const coralDetailsReducer = (
+  state = { coral: { reviews: [] } },
+  action
+) => {
+  switch (action.type) {
+    case CORAL_DETAILS_REQUEST:
+      return { ...state, loading: true }
+    case CORAL_DETAILS_SUCCESS:
+      return { loading: false, coral: action.payload }
+    case CORAL_DETAILS_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
 
 // export const storeDeleteReducer = (state = {}, action) => {
 //   switch (action.type) {

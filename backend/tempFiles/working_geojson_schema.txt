@@ -1,0 +1,159 @@
+input data should be of this structure
+-------------------------------------
+{
+"coralId":"SI",
+"coralArea":"Sagiang Island",
+"coordinates": [
+          [
+            [
+              147.86614246514614,
+              -6.631623655187113
+            ],
+            [
+              147.86621381075247,
+              -6.63229690305667
+            ],
+            [
+              147.86642784757004,
+              -6.633962301726697
+            ],
+            [
+              147.86589275552484,
+              -6.6360529005985
+            ],
+            [
+              147.86453718901072,
+              -6.637434817015873
+            ],
+            [
+              147.86346700492328,
+              -6.639844303029648
+            ],
+            [
+              147.86278922166684,
+              -6.641438809345971
+            ],
+            [
+              147.86271787606057,
+              -6.642572677362139
+            ],
+            [
+              147.86346700492328,
+              -6.6423955106569395
+            ],
+            [
+              147.86382373295334,
+              -6.641722276596013
+            ],
+            [
+              147.86446584340985,
+              -6.641332509084776
+            ],
+            [
+              147.86442487846972,
+              -6.64080900441644
+            ],
+            [
+              147.86402824456866,
+              -6.640092689819554
+            ],
+            [
+              147.86442487846767,
+              -6.639376374177488
+            ],
+            [
+              147.86516036300304,
+              -6.638140877987752
+            ],
+            [
+              147.86618800537593,
+              -6.637352927600972
+            ],
+            [
+              147.86653055283313,
+              -6.635615850705491
+            ],
+            [
+              147.86770242571373,
+              -6.633771319046588
+            ],
+            [
+              147.86781059859612,
+              -6.632965453533231
+            ],
+            [
+              147.8672336765614,
+              -6.631980505003227
+            ],
+            [
+              147.86614246514614,
+              -6.631623655187113
+            ]
+          ]
+        ]
+        
+      
+    
+  
+}
+
+const geometrySchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ['Polygon'],
+    required: false
+  },
+  coordinates: {
+    type: [[[Number]]],
+    index:'2dsphere',
+    required: false
+  }
+});
+
+const propertiesSchema=new mongoose.Schema({
+  type:String,
+  coralId: {
+    type: String,
+    required:false
+  },
+  coralArea:{
+    type:String
+  }
+})
+
+const featureObjectSchema=new mongoose.Schema({
+  
+  type:{
+    type:String,
+    enum:['Feature'],
+    default:'Feature'
+  },
+  properties:[propertiesSchema],
+  parcel:[geometrySchema]
+})
+
+const CoralSchema = mongoose.Schema({
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  type:{
+    type:String,
+    enum:['FeatureCollection'],
+    default:'FeatureCollection'
+  },
+  features:{
+     type:[featureObjectSchema]
+  }
+
+});
+
+
+const  Coral = mongoose.model('Coral', CoralSchema);
+
+
+
+
+export default Coral
+
+
