@@ -50,7 +50,8 @@ const CoralSchema = mongoose.Schema({
     default:'FeatureCollection'
   },
   features:{
-     type:[featureObjectSchema]
+     //type:[featureObjectSchema]
+     type:{}
   }
 
 });
@@ -59,14 +60,4 @@ const CoralSchema = mongoose.Schema({
 const  Coral = mongoose.model('Coral', CoralSchema);
 
 
-
-
 export default Coral
-
-
-
-
-
-
-
-

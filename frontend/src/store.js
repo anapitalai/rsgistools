@@ -33,6 +33,16 @@ import {
   // productTopRatedReducer,
 } from './reducers/coralReducers'
 
+import {
+  coralMultiListReducer,
+ 
+  // productDeleteReducer,
+  coralMultiCreateReducer,
+  // productUpdateReducer,
+  // productReviewCreateReducer,
+  // productTopRatedReducer,
+} from './reducers/coralMultiReducers'
+
 import { cartReducer } from './reducers/cartReducers'
 import {
   userLoginReducer,
@@ -72,6 +82,9 @@ const reducer = combineReducers({
   coralList: coralListReducer,
   coralCreate: coralCreateReducer,
   coralDetails: coralDetailsReducer,
+
+  coralMultiList: coralMultiListReducer,
+  coralMultiCreate: coralMultiCreateReducer,
   //
 
   cart: cartReducer,

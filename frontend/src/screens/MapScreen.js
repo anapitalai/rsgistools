@@ -251,6 +251,11 @@ function MapScreen({ history, match }) {
 					<i className="fas fa-shopping-cart" /> Add Coral GeoJSON Data
 				</Nav.Link>
 			</LinkContainer>
+			<LinkContainer to="/multi">
+				<Nav.Link>
+					<i className="fas fa-shopping-cart" /> Add Multipolygon Coral Data
+				</Nav.Link>
+			</LinkContainer>
 			<ReactMapGL
 				initialViewState={{ ...viewport }}
 				mapboxAccessToken="pk.eyJ1IjoiYW5hcGl0YWxhaSIsImEiOiJjbDdlYzRjNjQwOXUxM3dwbGNxd3V5bDN3In0.QsuXMK_1u4kBZEht5QaO3w"
@@ -277,19 +282,18 @@ function MapScreen({ history, match }) {
 				 
 				))}</>)}
 
-{/* {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) :(<>{corals.map((coral) => {
+{/* {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) :(<>{corals[2].map((coral) => {
 
-<Source  id="b" type="geojson" data={coral} >
+<Source   id="b" type="geojson" data={coral} >
 				<Layer {...jsonCoralLayer} />
 				</Source> 
 
 
 })}</>)} */}
 
-{/* data.corals[0].features[0].properties.coralId) */}
-	{/* <Row>
+	 <Row>
             {corals.map((coral) => (
-    <Source key={coral.features[0].properties.coralId}  id="b3" type="geojson" data={corals[0]} >
+    <Source key={coral.features[0].properties.coralId}  id="b3" type="geojson" data={corals[3]} >
 	<Layer  {...jsonCoralLayer} />
 	</Source> 
             ))}
@@ -310,7 +314,7 @@ function MapScreen({ history, match }) {
 	<Layer  {...b2Layer} />
 	</Source> 
             ))}
-          </Row> */}
+          </Row>
 
 
 {/* 
@@ -324,7 +328,7 @@ function MapScreen({ history, match }) {
 				<Source id="geom" type="geojson" data={geomorphicData} >
 				<Layer {...geomLayer} />
 				</Source>*/}
- 
+{/*  
 				<Source id="b2" type="geojson" data={corals[0]} >
 				<Layer {...b2Layer} />
 				</Source> 
@@ -333,7 +337,7 @@ function MapScreen({ history, match }) {
 				</Source> 
 				<Source id="b23" type="geojson" data={corals[2]} >
 				<Layer {...b22Layer} />
-				</Source> 
+				</Source>  */}
 
 				{pointData && (
           <Source type="geojson" data={pointData}>

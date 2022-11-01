@@ -27,6 +27,7 @@ import AddStoreScreen from './screens/AddStoreScreen'
 import AddCoralScreen from './screens/AddCoralScreen'
 
 import AddTemperatureScreen from './screens/AddTemperatureScreen'
+import AddMultiPolygonCoral from './screens/AddMultiPolygonCoral'
 
 
 
@@ -42,6 +43,7 @@ const App = () => {
           <Route path='/placeorder' component={PlaceOrderScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/store' component={AddStoreScreen} />
+          <Route path='/multi' component={AddMultiPolygonCoral} />
           <Route path='/temperature' component={AddTemperatureScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />
@@ -65,10 +67,6 @@ const App = () => {
           <Route path='/admin/orderlist' component={OrderListScreen} />
           <Route path='/map' component={MapScreen} />
           <Route path='/geo' component={AddCoralScreen} />
-
-          
-
-      
 
           <Route path='/search/:keyword' component={HomeScreen} exact />
           <Route path='/page/:pageNumber' component={HomeScreen} exact />

@@ -87,10 +87,6 @@ export const createCoral = (coralId,coralArea,coordinates) => async (dispatch) =
     })
 
 
-    // const {
-    //   userLogin: { userInfo },
-    // } = getState()
-
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -98,6 +94,40 @@ export const createCoral = (coralId,coralArea,coordinates) => async (dispatch) =
     }
 
     const { data } = await axios.post(`/api/corals`, {coralId,coralArea,coordinates},config)
+
+    dispatch({
+      type: CORAL_CREATE_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
+    dispatch({
+      type: CORAL_CREATE_FAIL,
+      payload: message,
+    })
+  }
+}
+//multipolygon add
+export const createCoralMultipolygon = (Id,gridcode,FID_FiCB_M,FID_FiCB_1,gridcode_1,Id_1,coordiates) => async (dispatch) => {
+  try {
+    dispatch({
+      type: CORAL_CREATE_REQUEST,
+    })
+
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+
+    const { data } = await axios.post(`/api/multipolygon`, {Id,gridcode,FID_FiCB_M,FID_FiCB_1,gridcode_1,Id_1,coordiates},config)
 
     dispatch({
       type: CORAL_CREATE_SUCCESS,

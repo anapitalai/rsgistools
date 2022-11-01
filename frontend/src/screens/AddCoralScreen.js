@@ -11,8 +11,7 @@ const AddCoralScreen = ({ location, history }) => {
   const [coralId, setName] = useState('')
   const [coralArea, setEmail] = useState('')
   const [coordinates, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [message, setMessage] = useState(null)
+
 
   const dispatch = useDispatch()
 
@@ -53,11 +52,11 @@ const AddCoralScreen = ({ location, history }) => {
 
       const coralId= result.features[0].properties.coralId
       const coralArea= result.features[0].properties.coralArea
-      const coordiates=result.features[0].geometry.coordinates
+      const coordinates=result.features[0].geometry.coordinates
       console.log(coralId,coralArea)
-      console.log(coordiates)
+      console.log(coordinates)
 
-      dispatch(createCoral(coralId,coralArea,coordiates))
+      dispatch(createCoral(coralId,coralArea,coordinates))
 
         
     };

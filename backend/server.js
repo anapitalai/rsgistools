@@ -12,15 +12,20 @@ import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import storeRoutes from './routes/storeRoutes.js'
 import coralRoutes from './routes/coralRoutes.js'
+import coralMultipolygonRoutes from './routes/coralMultipolygonRoutes.js'
 
 
 import temperatureRoutes from './routes/temperatureRoutes.js'
+import bodyParser from 'body-parser'
+
 
 dotenv.config()
 
 connectDB()
 
 const app = express()
+app.use(bodyParser.urlencoded({limit: '50mb'}));
+app.use(bodyParser.json({limit: '50mb'}));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
@@ -29,6 +34,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json())
 app.use('/api/stores',storeRoutes)
 app.use('/api/corals',coralRoutes)
+app.use('/api/multipolygon',coralMultipolygonRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/temperatures', temperatureRoutes)
 app.use('/api/users', userRoutes)
