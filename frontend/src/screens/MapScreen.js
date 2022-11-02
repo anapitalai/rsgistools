@@ -199,7 +199,7 @@ function MapScreen({ history, match }) {
 		source:"route",
 		paint:{
 			'fill-outline-color': '#009988',  //ff0000
-			'fill-color': '#6effaa',
+			'fill-color': '#FFA500',
 			'fill-opacity': 0.75
 		}
 	}
@@ -210,7 +210,7 @@ function MapScreen({ history, match }) {
 		source:"route",
 		paint:{
 			'fill-outline-color': '#008899',  //ff0000
-			'fill-color': '#222222',
+			'fill-color': '#FFFF00',
 			'fill-opacity': 0.75
 		}
 	}
@@ -324,7 +324,7 @@ function MapScreen({ history, match }) {
 				</Source>  */}
 
 
-<Source id="low" type="geojson" data={corals[0]} >
+                <Source id="low" type="geojson" data={corals[0]} >
 				<Layer {...lowLayer} />
 				</Source> 
 				<Source id="moderate" type="geojson" data={corals[1]} >
