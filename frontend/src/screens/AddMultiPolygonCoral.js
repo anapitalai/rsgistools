@@ -53,14 +53,14 @@
            
 
 
-          console.log('features',result.features)
-          const Id= result.features[0].properties.Id
-          const gridcode= result.features[0].properties.gridcode
-          const coordinates=result.features[0].geometry.coordinates
-          console.log('All data',Id,gridcode,coordinates)
+          // console.log('features',result.features)
+          // const Id= result.features[0].properties.Id
+          // const gridcode= result.features[0].properties.gridcode
+          // const coordinates=result.features[0].geometry.coordinates
+          // console.log('All data',Id,gridcode,coordinates)
           
     
-          dispatch(createCoralMultipolygon(result.features))
+          dispatch(createCoralMultipolygon(result.name,result.features))
 
           // const featuresArray = result.features.map(mp=>{
           //   const Id= mp.properties.Id

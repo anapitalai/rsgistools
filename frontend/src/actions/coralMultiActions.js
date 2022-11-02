@@ -23,7 +23,7 @@ import {
 } from '../constants/coralMultiConstants'
 import { logout } from './userActions'
 
-export const listCoralMultis = (keyword = '', pageNumber = '') => async (
+export const listMultiCoral = (keyword = '', pageNumber = '') => async (
   dispatch
 ) => {
   try {
@@ -39,7 +39,7 @@ export const listCoralMultis = (keyword = '', pageNumber = '') => async (
     })
 //logger 
     // console.log('DB coral data',data.corals[0].features[0].properties.coralId)
-    console.log('DB',data.corals)
+    console.log('DB',data)
 
   } catch (error) {
     dispatch({
@@ -59,7 +59,7 @@ export const listCoralMultis = (keyword = '', pageNumber = '') => async (
 
 
 //multipolygon add
-export const createCoralMultipolygon = (features) => async (dispatch) => {
+export const createCoralMultipolygon = (name,features) => async (dispatch) => {
   try {
     dispatch({
       type: CORALMULTI_CREATE_REQUEST,
@@ -72,7 +72,7 @@ export const createCoralMultipolygon = (features) => async (dispatch) => {
       },
     }
 
-    const { data } = await axios.post(`/api/multipolygon`, {features},config)
+    const { data } = await axios.post(`/api/multipolygon`, {name,features},config)
 
     dispatch({
       type: CORALMULTI_CREATE_SUCCESS,

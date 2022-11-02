@@ -44,6 +44,9 @@ const CoralSchema = mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  name:{
+    type:String
+  },
   type:{
     type:String,
     enum:['FeatureCollection'],

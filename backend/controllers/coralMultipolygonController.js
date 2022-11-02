@@ -17,14 +17,14 @@ const getCoralMultipolygons = asyncHandler(async (req, res) => {
 		: {};
 
 		const count = await Coral.countDocuments({ ...keyword });
-		const coralmultipolygon = await Coral.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1));
+		const corals = await Coral.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1));
        
 		
 	
 
 
 
-	 res.json({ coralmultipolygon, page, pages: Math.ceil(count / pageSize) });
+	 res.json({ corals, page, pages: Math.ceil(count / pageSize) });
 
 });
 
@@ -51,8 +51,8 @@ const getCoralMultipolygonById = asyncHandler(async (req, res) => {
 
 
 const addCoralMultiPolygon = asyncHandler(async (req, res) => {
-	const { type,features} = req.body;
-console.log(type,features)
+	const { type,name,features} = req.body;
+console.log(type,name,features)
 
 	const geometry = {
 		type: 'Polygon',
@@ -82,7 +82,7 @@ const properties={
 	//whast saved into the db
    
 		const coral = await Coral.create({
-         features
+         features,name
 		});
 
 

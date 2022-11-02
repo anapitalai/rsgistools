@@ -29,13 +29,13 @@ import {
 export const coralMultiListReducer = (state = { corals: {} }, action) => {
   switch (action.type) {
     case CORALMULTI_LIST_REQUEST:
-      return { loadingCoral: true, corals: {} }
+      return { loading: true, corals: {} }
     case CORALMULTI_LIST_SUCCESS:
       return {
-        loadingCoral: false,
-        multicorals: action.payload.multicorals,
-        pagesCoral: action.payload.pagesCoral,
-        pageCoral: action.payload.pageCoral,
+        loading: false,
+        corals: action.payload.corals,
+        pages: action.payload.pages,
+        page: action.payload.page,
       }
     case CORALMULTI_LIST_FAIL:
       return { loading: false, error: action.payload }
