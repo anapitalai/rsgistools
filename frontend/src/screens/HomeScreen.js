@@ -27,12 +27,13 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
+    
 
       <Meta />
       {!keyword ? (
         <ProductCarousel />
       ) : (
-        <Link to='/' className='btn btn-light'>
+        <Link to='/admin/map' className='btn btn-light'>
           Go Back
         </Link>
       )}

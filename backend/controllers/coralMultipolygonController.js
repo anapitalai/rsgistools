@@ -43,10 +43,23 @@ const getCoralMultipolygonById = asyncHandler(async (req, res) => {
 	}
   })
   
+// @desc    Delete a multipolygon
+// @route   DELETE /api/multi/:id
+// @access  Private/Admin
+const deleteMultipolygon = asyncHandler(async (req, res) => {
+	const coral = await Coral.findById(req.params.id)
+  
+	if (coral) {
+	  await coral.remove()
+	  res.json({ message: 'Coral area removed' })
+	} else {
+	  res.status(404)
+	  throw new Error('Coral area not found')
+	}
+  })
 
-
-// @desc  Create a store
-// @route POST /api/stores
+// @desc  Create a Multipolygon
+// @route POST /api/multi
 // @access Public
 
 
@@ -104,7 +117,7 @@ const properties={
 
 
 
-export { getCoralMultipolygons,addCoralMultiPolygon };
+export { getCoralMultipolygons,addCoralMultiPolygon,getCoralMultipolygonById,deleteMultipolygon };
 
 
 

@@ -2,13 +2,11 @@ import {
   CORALMULTI_LIST_REQUEST,
   CORALMULTI_LIST_SUCCESS,
   CORALMULTI_LIST_FAIL,
+  
+  CORALMULTI_DELETE_REQUEST,
+  CORALMULTI_DELETE_SUCCESS,
+  CORALMULTI_DELETE_FAIL,
 
-  CORALMULTI_DETAILS_REQUEST,
-  CORALMULTI_DETAILS_SUCCESS,
-  CORALMULTI_DETAILS_FAIL,
-  // PRODUCT_DELETE_REQUEST,
-  // PRODUCT_DELETE_SUCCESS,
-  // PRODUCT_DELETE_FAIL,
   CORALMULTI_CREATE_RESET,
   CORALMULTI_CREATE_FAIL,
   CORALMULTI_CREATE_SUCCESS,
@@ -26,10 +24,10 @@ import {
   // PRODUCT_TOP_FAIL,
 } from '../constants/coralMultiConstants'
 
-export const coralMultiListReducer = (state = { corals: {} }, action) => {
+export const coralMultiListReducer = (state = { corals: [] }, action) => {
   switch (action.type) {
     case CORALMULTI_LIST_REQUEST:
-      return { loading: true, corals: {} }
+      return { loading: true, corals: [] }
     case CORALMULTI_LIST_SUCCESS:
       return {
         loading: false,
@@ -44,6 +42,18 @@ export const coralMultiListReducer = (state = { corals: {} }, action) => {
   }
 }
 
+export const coralDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CORALMULTI_DELETE_REQUEST:
+      return { loading: true }
+    case CORALMULTI_DELETE_SUCCESS:
+      return { loading: false, success: true }
+    case CORALMULTI_DELETE_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
 
 
 export const coralMultiCreateReducer = (state = {}, action) => {

@@ -35,8 +35,7 @@ import {
 
 import {
   coralMultiListReducer,
- 
-  // productDeleteReducer,
+  coralDeleteReducer,
   coralMultiCreateReducer,
   // productUpdateReducer,
   // productReviewCreateReducer,
@@ -84,6 +83,7 @@ const reducer = combineReducers({
   coralDetails: coralDetailsReducer,
 
   coralMultiList: coralMultiListReducer,
+  coralDelete: coralDeleteReducer,
   coralMultiCreate: coralMultiCreateReducer,
   //
 

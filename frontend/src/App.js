@@ -18,6 +18,7 @@ import UserEditScreen from './screens/UserEditScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
+import CoralAreaListScreen from './screens/CoralAreaListScreen'
 
 
 // just added
@@ -43,7 +44,6 @@ const App = () => {
           <Route path='/placeorder' component={PlaceOrderScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/store' component={AddStoreScreen} />
-          <Route path='/multi' component={AddMultiPolygonCoral} />
           <Route path='/temperature' component={AddTemperatureScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />
@@ -51,6 +51,10 @@ const App = () => {
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/admin/userlist' component={UserListScreen} />
+          <Route path='/admin/multi' component={AddMultiPolygonCoral} />
+
+          <Route path='/admin/coralarealist' component={CoralAreaListScreen} />
+
           <Route path='/admin/user/:id/edit' component={UserEditScreen} />
 
           <Route
@@ -65,7 +69,7 @@ const App = () => {
           />
           <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
           <Route path='/admin/orderlist' component={OrderListScreen} />
-          <Route path='/map' component={MapScreen} />
+          <Route path='/admin/map' component={MapScreen} />
           <Route path='/geo' component={AddCoralScreen} />
 
           <Route path='/search/:keyword' component={HomeScreen} exact />

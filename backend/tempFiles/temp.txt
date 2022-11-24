@@ -2392,3 +2392,71 @@
         "$oid": "635908c8b4ce9a0f86501643"
     }
 }
+
+
+
+
+// const [ geomorphicData, setGeomorphicData ] = useState([]);
+
+	// useEffect(() => {
+	// 	const getData = async () => {
+	// 		const { data } = await axios.get('../geomorphic.geojson');
+	// 		setGeomorphicData(data);
+	// 	};
+
+	// 	getData();
+	// }, []);
+
+
+	// //trial
+
+	// const [ geojsonData, setGeojsonData ] = useState([]);
+
+	// useEffect(() => {
+	// 	const getGeojson = async () => {
+	// 		const { data } = await axios.get('../geojson/geo.geojson');
+	// 		setGeojsonData(data);
+	// 	};
+
+	// 	getGeojson();
+	// }, []);
+
+ //bleached data
+	//const [ bleachData, setBleachData ] = useState([]);
+
+
+
+
+	// useEffect(() => {
+	// 	const getBleachData = async () => {
+	// 		const { data } = await axios.get('../geojson/bleached_180722_4326.geojson');
+			
+	// 		setBleachData(data);
+	// 	};
+
+	// 	getBleachData();
+	// }, []);
+	// const [ bleach22Data, setBleach22Data ] = useState([]);
+	// useEffect(() => {
+	// 	const getBleach22Data = async () => {
+	// 		const { data } = await axios.get('../geojson/bleached_220722_4326.geojson');
+		
+	// 		setBleach22Data(data);
+	// 	};
+
+	// 	getBleach22Data();
+	// }, []);
+
+	//  bleached data
+	//  const [ bleach2Data, setBleach2Data ] = useState([]);
+
+	//  useEffect(() => {
+	// 	 const getBleach2Data = async () => {
+	// 		 const { data } = await axios.get('../geojson/bleached_030722_4326.geojson');
+		
+	// 		 setBleach2Data(data);
+	// 	 };
+ 
+	// 	 getBleach2Data();
+	//  }, []);
+ 

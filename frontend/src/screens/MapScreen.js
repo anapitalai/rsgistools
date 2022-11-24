@@ -7,16 +7,11 @@ import Loader from '../components/Loader'
 import ReactMapGL, { Marker, Popup, Source, Layer,LayerProps,NavigationControl,FullscreenControl,FillLayer } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { dataLayer } from '../map-style'
-
 import axios from 'axios';
-
-import ControlPanel from '../components/map-components/ControlPanel';
-
+import LegendPanel from '../components/map-components/LegendPanel';
 import { listStores } from '../actions/storeActions';
-// import { STORE_CREATE_RESET } from '../constants/storeConstants';
-
 import {listMultiCoral} from '../actions/coralMultiActions';
-
+import ControlPanel from '../components/map-components/ControlPanel';
 
 
 const pointLayer = {
@@ -28,99 +23,21 @@ const pointLayer = {
 	}
   };
 
- 
-  function pointOnCircle({center, angle, radius}) {
-	return {
-	  type: 'Point',
-	  coordinates: [center[0] + Math.cos(angle) * radius, center[1] + Math.sin(angle) * radius]
-	};
-  }
 
 function MapScreen({ history, match }) {
 
 	const [pointData, setPointData] = useState(null);
-	useEffect(() => {
-		const animation = window.requestAnimationFrame(() =>
-		  setPointData(pointOnCircle({center: [-100, 0], angle: Date.now() / 1000, radius: 20}))
-		);
-		return () => window.cancelAnimationFrame(animation);
-	  });
-	
 
+	
 	const [ viewport, setViewport ] = useState({
-		latitude: -6.664096057765138,
-		longitude: 147.84095764160156,
+		latitude: -6.635908,
+		longitude: 147.864312,
 		width: '100vw',
 		height: '100vh',
-		zoom: 12.62
+		zoom: 15.62,
+		pitch:180
 	});
-	const [ geomorphicData, setGeomorphicData ] = useState([]);
-
-	useEffect(() => {
-		const getData = async () => {
-			const { data } = await axios.get('../geomorphic.geojson');
-			//console.log(data)
-			setGeomorphicData(data);
-		};
-
-		getData();
-	}, []);
-
-
-	//trial
-
-	const [ geojsonData, setGeojsonData ] = useState([]);
-
-	useEffect(() => {
-		const getGeojson = async () => {
-			const { data } = await axios.get('../geojson/geo.geojson');
-			// console.log('Polygon data',data)
-			setGeojsonData(data);
-		};
-
-		getGeojson();
-	}, []);
-
- //bleached data
-	const [ bleachData, setBleachData ] = useState([]);
-
-
-
-
-	useEffect(() => {
-		const getBleachData = async () => {
-			const { data } = await axios.get('../geojson/bleached_180722_4326.geojson');
-			
-			setBleachData(data);
-		};
-
-		getBleachData();
-	}, []);
-	const [ bleach22Data, setBleach22Data ] = useState([]);
-	useEffect(() => {
-		const getBleach22Data = async () => {
-			const { data } = await axios.get('../geojson/bleached_220722_4326.geojson');
-		
-			setBleach22Data(data);
-		};
-
-		getBleach22Data();
-	}, []);
-
-	 //bleached data
-	 const [ bleach2Data, setBleach2Data ] = useState([]);
-
-	 useEffect(() => {
-		 const getBleach2Data = async () => {
-			 const { data } = await axios.get('../geojson/bleached_030722_4326.geojson');
-		
-			 setBleach2Data(data);
-		 };
- 
-		 getBleach2Data();
-	 }, []);
- 
-
+	
 	const pageNumber = match.params.pageNumber || 1;
 
 	const dispatch = useDispatch();
@@ -131,14 +48,14 @@ function MapScreen({ history, match }) {
 	//coral stuff multipolygon
 	const coralMultiList = useSelector((state) => state.coralMultiList);
 	const { loadingCoral, errorCoral, corals, pageCoral, pagesCoral } = coralMultiList;
+     
+	const userLogin = useSelector((state) => state.userLogin);
+	const {userInfo} = userLogin
 
 	
-
-
 	useEffect(
 		() => {
 			dispatch(listMultiCoral());
-		console.log('mapscreen',)	
 	   
 		},
 		[ dispatch ]
@@ -153,8 +70,6 @@ function MapScreen({ history, match }) {
 		},
 		[ dispatch ]
 	);
-
-
 
 
 
@@ -173,9 +88,9 @@ function MapScreen({ history, match }) {
 		type:"fill",
 		source:"route",
 		paint:{
-			'fill-outline-color': '#111111',
-			'fill-color': '#FF0000',
-			'fill-opacity': 0.75
+			'fill-outline-color': '#FF0000',
+			'fill-color': '#FF0000',  //red  
+			'fill-opacity': 0.85
 		}
 	}
 	const b22Layer:FillLayer={
@@ -198,20 +113,22 @@ function MapScreen({ history, match }) {
 		type:"fill",
 		source:"route",
 		paint:{
-			'fill-outline-color': '#009988',  //ff0000
-			'fill-color': '#FFA500',
-			'fill-opacity': 0.75
+			'fill-outline-color': '#FFA500',  
+			'fill-color': '#FFA500', //yellow
+			'fill-opacity': 0.55
 		}
 	}
 
+
+	
 	const lowLayer:FillLayer={
 		id:"low",
 		type:"fill",
 		source:"route",
 		paint:{
-			'fill-outline-color': '#008899',  //ff0000
-			'fill-color': '#FFFF00',
-			'fill-opacity': 0.75
+			'fill-outline-color': '#F2F12D',  
+			'fill-color': '#F2F12D', //orange
+			'fill-opacity': 1.0
 		}
 	}
 
@@ -224,19 +141,16 @@ function MapScreen({ history, match }) {
 			'fill-color': '#6e599f',
 			'fill-opacity': 0.75
 		  }
-		// paint:{
-		// 	'line-color': '#880088'
-		// }
 	}
 
-	
-  const submitHandle = (e) => {
-    e.preventDefault()
-    
-  }
+
+	//onHover functionality
+const [onHover,setonHover] =useState(null)
+const [onCoralHover,setonCoralHover] = useState(null)
 
 	return (
 		<div className="">
+ 
 			<LinkContainer to="/store">
 				<Nav.Link>
 					<i className="fas fa-shopping-cart" /> Add Store
@@ -252,7 +166,8 @@ function MapScreen({ history, match }) {
 					<i className="fas fa-shopping-cart" /> Add Coral GeoJSON Data
 				</Nav.Link>
 			</LinkContainer>
-			<LinkContainer to="/multi">
+			
+			<LinkContainer to="/admin/multi">
 				<Nav.Link>
 					<i className="fas fa-shopping-cart" /> Add Multipolygon Coral Data
 				</Nav.Link>
@@ -262,112 +177,76 @@ function MapScreen({ history, match }) {
 				mapboxAccessToken="pk.eyJ1IjoiYW5hcGl0YWxhaSIsImEiOiJjbDdlYzRjNjQwOXUxM3dwbGNxd3V5bDN3In0.QsuXMK_1u4kBZEht5QaO3w"
 				style={{ width: 1000, height: 1000 }}
 				mapStyle="mapbox://styles/anapitalai/cl8dw9b8f000d14rtgqhu1exx"
-			
+			    onHover={onHover}
 				onViewportChange={(viewport) => {
 					setViewport(viewport);
 				}}
 			>
 
-
 				{loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) :(<>{stores.map(s => (
 
 					<Marker key={s.storeId} latitude={s.location.coordinates[1]} longitude={s.location.coordinates[0]}>
-						<button onClick={
-							e=>{
-								e.preventDefault()
-								//setSelectedPoint(s)
-								console.log('Clicked')
-							}
-						}><img className='marker' src="/a.png" /></button>
+						<img onMouseEnter={()=>{
+							setonHover(s)	}}
+							onMouseLeave={()=>{
+								setonHover(null)}}
+							 
+							className='marker' src="/a.png" />
 					</Marker>
 				 
 				))}</>)}
-{/* 
-<Row>
-{loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) :(<>{multicorals.map((coral) => {
+                 
+                    <Source id="low" type="geojson" data={corals[2]} >
+                          <Layer
+                            {...lowLayer} />
+                     </Source> 
 
-<Source   id="b" type="geojson" data={coral} >
-				<Layer {...jsonCoralLayer} />
-				</Source> 
-
-
-})}</>)}
-</Row> */}
-	 {/* <Row>
-            {multicorals[0].map((coral) => (
-    <Source key={coral.features.properties.Id}  id="b3" type="geojson" data={coral} >
-	<Layer  {...jsonCoralLayer} />
-	</Source> 
-	
-            ))}
-          </Row> */}
-
-
-		  {/* <Row>
-            {corals.map((coral) => (
-    <Source key={coral.features[0].properties.Id}  id="" type="geojson" data={corals} >
-	<Layer  {...coralLayer} />
-	</Source> 
-            ))}
-          </Row> */}
-
-		  {/* <Row>
-            {corals.map((coral) => (
-    <Source key={coral.features[0].properties.coralId}  id="" type="geojson" data={corals[2]} >
-	<Layer  {...b2Layer} />
-	</Source> 
-            ))}
-          </Row> */}
-{/* 
-<Source id="route" type="geojson" data={bleach2Data} >
-				<Layer {...coralLayer} />
-				</Source>  */}
-
-
-                <Source id="low" type="geojson" data={corals[0]} >
-				<Layer {...lowLayer} />
-				</Source> 
 				<Source id="moderate" type="geojson" data={corals[1]} >
 				<Layer {...moderateLayer} />
 				</Source> 
-				<Source id="severe" type="geojson" data={corals[2]} >
+				<Source id="severe" type="geojson" data={corals[0]} >
 				<Layer {...severeLayer} />
 				</Source> 
-				<Source id="severe" type="geojson" data={corals[3]} >
-				<Layer {...severeLayer} />
-				</Source> 
-{/* 
-				<Source id="b22" type="geojson" data={bleach22Data} >
-				<Layer {...b2Layer} />
-				</Source>  */}
-{/* <Source id="geom" type="geojson" data={geomorphicData} >
-				<Layer {...geomLayer} />
-				</Source> 
+ 
 
-				{/* <Source id="b2" type="geojson" data={corals[0]} >
-				<Layer {...b2Layer} />
-				</Source>  */}
-				{/* <Source id="b22" type="geojson" data={corals[1]} >
-				<Layer {...b22Layer} />
-				</Source>  */}
-				{/* <Source id="b23" type="geojson" data={corals[2]} >
-				<Layer {...b22Layer} />
-				</Source>   */}
-
-				{pointData && (
+				 {pointData && (
           <Source type="geojson" data={pointData}>
             <Layer {...pointLayer} />
           </Source>
 
-
-        )}
+        )} 
 
 <NavigationControl position="top-left" />
 <FullscreenControl />
 
-			</ReactMapGL>
+{/* <ControlPanel></ControlPanel> */}
 
-			<ControlPanel  />
+        {onHover ? (
+			                <Popup
+                                  latitude={onHover.location.coordinates[1]}
+                                  longitude={onHover.location.coordinates[0]}
+                                  anchor="bottom" >
+							  <h6> {onHover.address}</h6> <br />
+							   <h6>{onHover.storeId}</h6>
+						   </Popup>
+
+		) : null }
+
+{onCoralHover ? (
+			                <Popup
+                                  latitude={onCoralHover.features.geometry.coordinates[1]}
+                                  longitude={onCoralHover.features.geometry.coordinates[0]}
+                                  anchor="bottom" >
+							  <h6> {onCoralHover.name}</h6>
+							
+						   </Popup>
+
+		) : null }
+		
+		<LegendPanel />
+			</ReactMapGL>
+		
+			
 			
 		</div>
 	);

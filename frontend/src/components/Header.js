@@ -20,16 +20,16 @@ const Header = () => {
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
-          <LinkContainer to='/'>
+          <LinkContainer to='/admin/map'>
             <Navbar.Brand>GeoCoW</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className='ml-auto'>
-              <LinkContainer to='/map'>
+              <LinkContainer to='/admin/map'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> Map
+                  <i className='fas fa-shopping-cart'></i> Coral Bleach Map
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
@@ -56,8 +56,8 @@ const Header = () => {
                   <LinkContainer to='/admin/productlist'>
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/admin/orderlist'>
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  <LinkContainer to='/admin/coralarealist'>
+                    <NavDropdown.Item>Coral Bleach Areas</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               )}

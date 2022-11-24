@@ -4,9 +4,10 @@ import {
   CORALMULTI_LIST_SUCCESS,
   CORALMULTI_LIST_FAIL,
 
-  // PRODUCT_DELETE_SUCCESS,
-  // PRODUCT_DELETE_REQUEST,
-  // PRODUCT_DELETE_FAIL,
+  CORALMULTI_DELETE_SUCCESS,
+  CORALMULTI_DELETE_REQUEST,
+  CORALMULTI_DELETE_FAIL,
+  
   CORALMULTI_CREATE_REQUEST,
   CORALMULTI_CREATE_SUCCESS,
   CORALMULTI_CREATE_FAIL,
@@ -53,6 +54,41 @@ export const listMultiCoral = (keyword = '', pageNumber = '') => async (
 }
 
 
+export const deleteCoral = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: CORALMULTI_DELETE_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    await axios.delete(`/api/multipolygon/${id}`, config)
+
+    dispatch({
+      type: CORALMULTI_DELETE_SUCCESS,
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
+    dispatch({
+      type: CORALMULTI_DELETE_FAIL,
+      payload: message,
+    })
+  }
+}
 
 
 
