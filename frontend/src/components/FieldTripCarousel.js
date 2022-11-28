@@ -23,7 +23,7 @@ const FieldTripCarousel = () => {
   ) : (
     <Carousel pause='hover' className='bg-dark'>
            <Carousel.Item key='id'>
-          <Link to=''>
+          <Link to='#'>
             <Image src='/field/dive2.JPG' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>

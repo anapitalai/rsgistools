@@ -154,7 +154,7 @@ const [onCoralHover,setonCoralHover] = useState(null)
  
 			<LinkContainer to="/store">
 				<Nav.Link>
-					<i className="fas fa-upload" /> Add Location
+					<i className="fas fa-upload" /> + STUDY AREA
 				</Nav.Link>
 			</LinkContainer>
 			{/* <LinkContainer to="/temperature">
@@ -170,7 +170,7 @@ const [onCoralHover,setonCoralHover] = useState(null)
 			
 			<LinkContainer to="/admin/multi">
 				<Nav.Link>
-					<i className="fas fa-upload" /> Add Multipolygon Coral Data
+					<i className="fas fa-upload" /> + CORAL DATA
 				</Nav.Link>
 			</LinkContainer>
 			<ReactMapGL

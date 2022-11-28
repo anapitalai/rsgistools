@@ -30,6 +30,10 @@ import AddCoralScreen from './screens/AddCoralScreen'
 import AddTemperatureScreen from './screens/AddTemperatureScreen'
 import AddMultiPolygonCoral from './screens/AddMultiPolygonCoral'
 import MarineLifeScreen from './screens/MarineLifeScreen'
+import CoralLifeScreen from './screens/CoralLifeScreen'
+import FieldScreen from './screens/FieldScreen'
+import NOAAScreen from './screens/NOAAScreen'
+
 import UploadImageScreen from './screens/UploadImageScreen'
 
 
@@ -74,6 +78,9 @@ const App = () => {
           <Route path='/admin/map' component={MapScreen} />
           <Route path='/geo' component={AddCoralScreen} />
           <Route path='/marine' component={MarineLifeScreen} />
+          <Route path='/coral' component={CoralLifeScreen} />
+          <Route path='/NOAA' component={NOAAScreen} />
+          <Route path='/field' component={FieldScreen} />
           <Route path='/uploads' component={UploadImageScreen} />
 
 

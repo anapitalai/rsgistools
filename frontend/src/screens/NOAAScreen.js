@@ -6,18 +6,17 @@ import NOAACarousel from '../components/NOAACarousel'
 import MortalityCarousel from '../components/MortalityCarousel'
 
 
-const MarineLifeScreen = () => {
+const NOAAScreen = () => {
     return (
         <div>
-        
-   
-           <MarineLifeCarousel />
-           <h1>Coral Mortality and Bleaching</h1>
-           <p>Some images of coral life and bleaching that were taken on the visited site area.</p>
+           <NOAACarousel />
+           <h1>NOAA Coral Reef Alerts</h1>
+           <p>NOAA images showing warnings of coral bleached areas, Papua New Guinea is experiencing coral bleaching.</p>
+
 
 
         </div>
     )
 }
 
-export default MarineLifeScreen
+export default NOAAScreen

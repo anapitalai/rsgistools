@@ -23,7 +23,7 @@ const NOAACarousel = () => {
   ) : (
     <Carousel pause='hover' className='bg-dark'>
             <Carousel.Item key='_id'>
-          <Link to=''>
+          <Link to='#'>
             <Image src='/noaa/NOAA_BleachngAlertArea_Pacific_19112022.jpg' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>

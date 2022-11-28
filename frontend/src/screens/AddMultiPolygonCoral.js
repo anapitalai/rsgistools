@@ -72,7 +72,8 @@
           setFiles(geo); 
           const result=JSON.parse(geo);
           console.log('XXX',result)
-          dispatch(createCoralMultipolygon(result.name,result.features))           
+          dispatch(createCoralMultipolygon(result.name,result.features))
+
         };
         
       }   

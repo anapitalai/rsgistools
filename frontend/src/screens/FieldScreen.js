@@ -6,18 +6,19 @@ import NOAACarousel from '../components/NOAACarousel'
 import MortalityCarousel from '../components/MortalityCarousel'
 
 
-const MarineLifeScreen = () => {
+const FieldScreen = () => {
     return (
         <div>
-        
-   
-           <MarineLifeCarousel />
-           <h1>Coral Mortality and Bleaching</h1>
-           <p>Some images of coral life and bleaching that were taken on the visited site area.</p>
+
+           <FieldTripCarousel />
+           <h1>Field Trip</h1>
+           <p>Ground truthing data was collected from the site area over a period of two days.</p>
+
+
 
 
         </div>
     )
 }
 
-export default MarineLifeScreen
+export default FieldScreen

@@ -29,27 +29,40 @@ const Header = () => {
             <Nav className='ml-auto'>
               <LinkContainer to='/admin/map'>
                 <Nav.Link>
-                  <i className='fas fa-map'></i> Coral Bleach Map
+                  <i className='fas fa-map'></i> CORAL MAP
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/marine'>
-                <Nav.Link>
-                  <i className='fas fa-images'></i>Field Trip Images
-                </Nav.Link>
-              </LinkContainer>
+
+            
+                <NavDropdown title='Field Trip Images' id='adminmenu'>
+                  <LinkContainer to='/marine'>
+                    <NavDropdown.Item>MARINE LIFE</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/field'>
+                    <NavDropdown.Item>FIELD WORK</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/NOAA'>
+                    <NavDropdown.Item>NOAA</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/coral'>
+                    <NavDropdown.Item>CORAL</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+            
+
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
                   <LinkContainer to='/profile'>
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                    <NavDropdown.Item>PROFILE</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
+                    LOGOUT
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
                 <LinkContainer to='/login'>
                   <Nav.Link>
-                    <i className='fas fa-user'></i> Sign In
+                    <i className='fas fa-user'></i> SIGN IN
                   </Nav.Link>
                 </LinkContainer>
               )}
@@ -57,33 +70,17 @@ const Header = () => {
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminmenu'>
                   <LinkContainer to='/admin/userlist'>
-                    <NavDropdown.Item>Users</NavDropdown.Item>
+                    <NavDropdown.Item>USERS</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>Products</NavDropdown.Item>
+                    <NavDropdown.Item>STUDY AREA</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/admin/coralarealist'>
-                    <NavDropdown.Item>Coral Bleach Areas</NavDropdown.Item>
+                    <NavDropdown.Item>BLEACH AREAS</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               )}
 
-{/* {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Field Trip Images' id='adminmenu'>
-                  <LinkContainer to='/marine'>
-                    <NavDropdown.Item>Marine Life</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/field'>
-                    <NavDropdown.Item>Field</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/noaa'>
-                    <NavDropdown.Item>NOAA</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/coralbleach'>
-                    <NavDropdown.Item>Coral Bleach & Mortality</NavDropdown.Item>
-                  </LinkContainer>
-                </NavDropdown>
-              )} */}
             </Nav>
           </Navbar.Collapse>
         </Container>

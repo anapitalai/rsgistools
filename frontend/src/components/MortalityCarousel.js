@@ -23,7 +23,7 @@ const MortalityCarousel = () => {
   ) : (
     <Carousel pause='hover' className='bg-dark'>
                   <Carousel.Item key='z'>
-          <Link to=''>
+          <Link to='#'>
             <Image src='/coral/recovery.JPG' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
