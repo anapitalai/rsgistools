@@ -24,7 +24,7 @@ const FieldTripCarousel = () => {
     <Carousel pause='hover' className='bg-dark'>
            <Carousel.Item key='id'>
           <Link to='#'>
-            <Image src='/field/dive2.JPG' alt='product.name' fluid />
+            <Image src='/field/dive2.webp' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
                 Some Field Measurements
@@ -35,7 +35,7 @@ const FieldTripCarousel = () => {
 
        <Carousel.Item key='_i'>
           <Link to=''>
-            <Image src='/field/dive3.JPG' alt='product.name' fluid />
+            <Image src='/field/dive3.webp' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
                 Measurements
@@ -46,7 +46,7 @@ const FieldTripCarousel = () => {
 
        <Carousel.Item key='d'>
           <Link to=''>
-            <Image src='/field/dive4.JPG' alt='product.name' fluid />
+            <Image src='/field/dive4.webp' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
                 Field Measurements
@@ -59,7 +59,7 @@ const FieldTripCarousel = () => {
 
           <Carousel.Item key='a'>
           <Link to=''>
-            <Image src='/field/drone.jpg' alt='product.name' fluid />
+            <Image src='/field/drone.webp' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
                 Mavic Drone Used
@@ -70,7 +70,7 @@ const FieldTripCarousel = () => {
         </Carousel.Item>
         <CarouselItem>
         <Link to=''>
-            <Image src='/field/gps.jpg' alt='product.name' fluid />
+            <Image src='/field/gps.webp' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
                 GPS Temperature Logger Location
