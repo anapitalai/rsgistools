@@ -103,7 +103,7 @@ const CoralListScreen = ({ history, match }) => {
           			
 			<LinkContainer to="/admin/multi">
 				<Nav.Link>
-					<i className="fas fa-shopping-cart" /> Add Bleach Coral
+					<i className="fas fa-upload" /> Add Bleach Coral
 				</Nav.Link>
 			</LinkContainer>
         </Col>

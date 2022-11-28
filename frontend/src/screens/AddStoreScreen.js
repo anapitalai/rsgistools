@@ -47,7 +47,7 @@ const AddStoreScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <h1>Add New Store</h1>
+      <h1>Add New Location</h1>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
 

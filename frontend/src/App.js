@@ -29,6 +29,8 @@ import AddCoralScreen from './screens/AddCoralScreen'
 
 import AddTemperatureScreen from './screens/AddTemperatureScreen'
 import AddMultiPolygonCoral from './screens/AddMultiPolygonCoral'
+import MarineLifeScreen from './screens/MarineLifeScreen'
+import UploadImageScreen from './screens/UploadImageScreen'
 
 
 
@@ -71,6 +73,9 @@ const App = () => {
           <Route path='/admin/orderlist' component={OrderListScreen} />
           <Route path='/admin/map' component={MapScreen} />
           <Route path='/geo' component={AddCoralScreen} />
+          <Route path='/marine' component={MarineLifeScreen} />
+          <Route path='/uploads' component={UploadImageScreen} />
+
 
           <Route path='/search/:keyword' component={HomeScreen} exact />
           <Route path='/page/:pageNumber' component={HomeScreen} exact />

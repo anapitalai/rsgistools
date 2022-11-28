@@ -20,6 +20,7 @@ const pointLayer = {
 	paint: {
 	  'circle-radius': 10,
 	  'circle-color': '#007cbf'
+	  //'circle-color' : '#000'
 	}
   };
 
@@ -35,7 +36,7 @@ function MapScreen({ history, match }) {
 		width: '100vw',
 		height: '100vh',
 		zoom: 15.62,
-		pitch:180
+		// pitch:180
 	});
 	
 	const pageNumber = match.params.pageNumber || 1;
@@ -153,10 +154,10 @@ const [onCoralHover,setonCoralHover] = useState(null)
  
 			<LinkContainer to="/store">
 				<Nav.Link>
-					<i className="fas fa-shopping-cart" /> Add Store
+					<i className="fas fa-upload" /> Add Location
 				</Nav.Link>
 			</LinkContainer>
-			<LinkContainer to="/temperature">
+			{/* <LinkContainer to="/temperature">
 				<Nav.Link>
 					<i className="fas fa-shopping-cart" /> Add Temperature
 				</Nav.Link>
@@ -165,11 +166,11 @@ const [onCoralHover,setonCoralHover] = useState(null)
 				<Nav.Link>
 					<i className="fas fa-shopping-cart" /> Add Coral GeoJSON Data
 				</Nav.Link>
-			</LinkContainer>
+			</LinkContainer> */}
 			
 			<LinkContainer to="/admin/multi">
 				<Nav.Link>
-					<i className="fas fa-shopping-cart" /> Add Multipolygon Coral Data
+					<i className="fas fa-upload" /> Add Multipolygon Coral Data
 				</Nav.Link>
 			</LinkContainer>
 			<ReactMapGL
@@ -189,8 +190,7 @@ const [onCoralHover,setonCoralHover] = useState(null)
 						<img onMouseEnter={()=>{
 							setonHover(s)	}}
 							onMouseLeave={()=>{
-								setonHover(null)}}
-							 
+							setonHover(null)}} 
 							className='marker' src="/a.png" />
 					</Marker>
 				 
@@ -226,8 +226,8 @@ const [onCoralHover,setonCoralHover] = useState(null)
                                   latitude={onHover.location.coordinates[1]}
                                   longitude={onHover.location.coordinates[0]}
                                   anchor="bottom" >
-							  <h6> {onHover.address}</h6> <br />
-							   <h6>{onHover.storeId}</h6>
+							  <h6> {onHover.storeId}</h6> <br />
+							   <h6>{onHover.address}</h6>
 						   </Popup>
 
 		) : null }
@@ -251,4 +251,6 @@ const [onCoralHover,setonCoralHover] = useState(null)
 		</div>
 	);
 }
-export default MapScreen;
+export default MapScreen
+
+

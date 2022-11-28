@@ -20,6 +20,9 @@ h2 {
   margin: 0.1rem;
 }
 
+
+
+
 /* carousel */
 .carousel-item-next,
 .carousel-item-prev,
@@ -36,13 +39,15 @@ h2 {
 }
 
 .carousel img {
-  height: 300px;
+  /* height: 300px;
   padding: 30px;
   margin: 40px;
   border-radius: 50%;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
 }
+
+
 .carousel a {
   margin: 0 auto;
 }
@@ -77,7 +82,7 @@ h2 {
 
 
 .marker {
-  width:20px,
+  width:20px;
 
 }
 
@@ -95,4 +100,10 @@ h2 {
   color: #6b6b76;
   outline: none;
   text-transform: uppercase;
+}
+
+.logo{
+  height:64px;
+  width:64px;
+  margin:5px;
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, Container, NavDropdown,Image } from 'react-bootstrap'
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
 
@@ -20,16 +20,21 @@ const Header = () => {
     <header>
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
-          <LinkContainer to='/admin/map'>
-            <Navbar.Brand>GeoCoW</Navbar.Brand>
+          <LinkContainer to='/'>
+            <Navbar.Brand><Image className='logo' src='/geocow_logo.png' roundedCircle />GEOCOW</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-            <Route render={({ history }) => <SearchBox history={history} />} />
+            {/* <Route render={({ history }) => <SearchBox history={history} />} /> */}
             <Nav className='ml-auto'>
               <LinkContainer to='/admin/map'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> Coral Bleach Map
+                  <i className='fas fa-map'></i> Coral Bleach Map
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to='/marine'>
+                <Nav.Link>
+                  <i className='fas fa-images'></i>Field Trip Images
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
@@ -48,6 +53,7 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
+              
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminmenu'>
                   <LinkContainer to='/admin/userlist'>
@@ -61,6 +67,23 @@ const Header = () => {
                   </LinkContainer>
                 </NavDropdown>
               )}
+
+{/* {userInfo && userInfo.isAdmin && (
+                <NavDropdown title='Field Trip Images' id='adminmenu'>
+                  <LinkContainer to='/marine'>
+                    <NavDropdown.Item>Marine Life</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/field'>
+                    <NavDropdown.Item>Field</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/noaa'>
+                    <NavDropdown.Item>NOAA</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/coralbleach'>
+                    <NavDropdown.Item>Coral Bleach & Mortality</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              )} */}
             </Nav>
           </Navbar.Collapse>
         </Container>
