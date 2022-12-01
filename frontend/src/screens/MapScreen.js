@@ -8,10 +8,11 @@ import ReactMapGL, { Marker, Popup, Source, Layer,LayerProps,NavigationControl,F
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { dataLayer } from '../map-style'
 import axios from 'axios';
-import LegendPanel from '../components/map-components/LegendPanel';
+import SideBar from '../components/map-components/SideBar';
 import { listStores } from '../actions/storeActions';
 import {listMultiCoral} from '../actions/coralMultiActions';
 import ControlPanel from '../components/map-components/ControlPanel';
+import {listTemperatures} from '../actions/temperatureActions';
 
 
 const pointLayer = {
@@ -35,7 +36,7 @@ function MapScreen({ history, match }) {
 		longitude: 147.864312,
 		width: '100vw',
 		height: '100vh',
-		zoom: 15.62,
+		zoom: 16,
 		// pitch:180
 	});
 	
@@ -49,6 +50,9 @@ function MapScreen({ history, match }) {
 	//coral stuff multipolygon
 	const coralMultiList = useSelector((state) => state.coralMultiList);
 	const { loadingCoral, errorCoral, corals, pageCoral, pagesCoral } = coralMultiList;
+
+	const temperatureList = useSelector((state) => state.temperatureList);
+	const { loadingTemperature, errorTemperature, temperatures, pageTemperature, pagesTemperature } = temperatureList;
      
 	const userLogin = useSelector((state) => state.userLogin);
 	const {userInfo} = userLogin
@@ -57,6 +61,15 @@ function MapScreen({ history, match }) {
 	useEffect(
 		() => {
 			dispatch(listMultiCoral());
+	       console.log('corals',corals)
+		},
+		[ dispatch ]
+	);
+
+		
+	useEffect(
+		() => {
+			dispatch(listTemperatures());
 	   
 		},
 		[ dispatch ]
@@ -133,6 +146,18 @@ function MapScreen({ history, match }) {
 		}
 	}
 
+		
+	const mildLayer:FillLayer={
+		id:"mild",
+		type:"fill",
+		source:"route",
+		paint:{
+			'fill-outline-color': '#008899',  
+			'fill-color': '#F2F12D', //orange
+			'fill-opacity': 1.0
+		}
+	}
+
 	const geomLayer:FillLayer={
 		id:"geom",
 		type:"fill",
@@ -157,22 +182,14 @@ const [onCoralHover,setonCoralHover] = useState(null)
 					<i className="fas fa-upload" /> + STUDY AREA
 				</Nav.Link>
 			</LinkContainer>
-			{/* <LinkContainer to="/temperature">
-				<Nav.Link>
-					<i className="fas fa-shopping-cart" /> Add Temperature
-				</Nav.Link>
-			</LinkContainer>
-			<LinkContainer to="/geo">
-				<Nav.Link>
-					<i className="fas fa-shopping-cart" /> Add Coral GeoJSON Data
-				</Nav.Link>
-			</LinkContainer> */}
+
 			
 			<LinkContainer to="/admin/multi">
 				<Nav.Link>
 					<i className="fas fa-upload" /> + CORAL DATA
 				</Nav.Link>
 			</LinkContainer>
+			<SideBar />	
 			<ReactMapGL
 				initialViewState={{ ...viewport }}
 				mapboxAccessToken="pk.eyJ1IjoiYW5hcGl0YWxhaSIsImEiOiJjbDdlYzRjNjQwOXUxM3dwbGNxd3V5bDN3In0.QsuXMK_1u4kBZEht5QaO3w"
@@ -183,7 +200,7 @@ const [onCoralHover,setonCoralHover] = useState(null)
 					setViewport(viewport);
 				}}
 			>
-
+{/* 
 				{loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) :(<>{stores.map(s => (
 
 					<Marker key={s.storeId} latitude={s.location.coordinates[1]} longitude={s.location.coordinates[0]}>
@@ -194,20 +211,34 @@ const [onCoralHover,setonCoralHover] = useState(null)
 							className='marker' src="/a.png" />
 					</Marker>
 				 
-				))}</>)}
+				))}</>)} */}
+
+
+{loadingTemperature ? (<Loader />) : error ? (<Message variant='danger'>{errorTemperature}</Message>) :(<>{temperatures.map(s => (
+
+<Marker key={s._id} latitude={s.location.coordinates[1]} longitude={s.location.coordinates[0]}>
+	<img onMouseEnter={()=>{
+		setonHover(s)	}}
+		onMouseLeave={()=>{
+		setonHover(null)}} 
+		className='marker' src="/t.jpeg" />
+		{/* <i class="fa-solid fa-temperature-three-quarters"></i> */}
+</Marker>
+
+))}</>)}
                  
-                    <Source id="low" type="geojson" data={corals[2]} >
+                 {/* <Source id="low" type="geojson" data={corals[2]} >
                           <Layer
                             {...lowLayer} />
                      </Source> 
 
 				<Source id="moderate" type="geojson" data={corals[1]} >
-				<Layer {...moderateLayer} />
-				</Source> 
-				<Source id="severe" type="geojson" data={corals[0]} >
-				<Layer {...severeLayer} />
-				</Source> 
- 
+				<Layer {...moderateLayer} /> 
+				</Source>  */}
+				 <Source id="severe" type="geojson" data={corals[0]} >
+				 <Layer {...severeLayer} />
+				 </Source> 
+
 
 				 {pointData && (
           <Source type="geojson" data={pointData}>
@@ -219,15 +250,18 @@ const [onCoralHover,setonCoralHover] = useState(null)
 <NavigationControl position="top-left" />
 <FullscreenControl />
 
-{/* <ControlPanel></ControlPanel> */}
+
 
         {onHover ? (
 			                <Popup
                                   latitude={onHover.location.coordinates[1]}
                                   longitude={onHover.location.coordinates[0]}
                                   anchor="bottom" >
-							  <h6> {onHover.storeId}</h6> <br />
-							   <h6>{onHover.address}</h6>
+							<h4> {onHover.location_name} Temperature Data</h4><h5>{onHover.date}</h5>
+							<h4>{onHover.time}</h4>
+							   <h5>{onHover.temp_depth_3m}M @3M</h5>
+							   <h5>{onHover.temp_depth_5_5m}M @5.5M</h5>
+							   <h5>{onHover.temp_depth_9m}M @9M</h5>
 						   </Popup>
 
 		) : null }
@@ -243,7 +277,7 @@ const [onCoralHover,setonCoralHover] = useState(null)
 
 		) : null }
 		
-		<LegendPanel />
+		
 			</ReactMapGL>
 		
 			

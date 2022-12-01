@@ -1,54 +1,74 @@
 import React, { useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button, Row, Col } from 'react-bootstrap'
+import { Table, Button, Row, Col, Nav } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
-import {
-  listProducts,
-  deleteProduct,
-  createProduct,
-} from '../actions/productActions'
-import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 
-const ProductListScreen = ({ history, match }) => {
+import {
+  listTemperatures,
+  createTemperature
+} from '../actions/temperatureActions'
+
+import { TEMPERATURE_CREATE_RESET } from '../constants/temperatureConstants'
+
+const TemperatureListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1
 
   const dispatch = useDispatch()
 
-  const productList = useSelector((state) => state.productList)
-  const { loading, error, products, page, pages } = productList
 
-  const productDelete = useSelector((state) => state.productDelete)
-  const {
-    loading: loadingDelete,
-    error: errorDelete,
-    success: successDelete,
-  } = productDelete
+	const temperatureList = useSelector((state) => state.temperatureList);
+	const { loading, error, temperatures, page, pages } = temperatureList;
+  
 
-  const productCreate = useSelector((state) => state.productCreate)
+  const temperatureCreate = useSelector((state) => state.temperatureCreate)
   const {
     loading: loadingCreate,
     error: errorCreate,
     success: successCreate,
-    product: createdProduct,
-  } = productCreate
+    temperature: createdTemperature,
+  } = temperatureCreate
+
+  const temperatureDelete = useSelector((state) => state.temperatureDelete)
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = temperatureDelete
+
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  // useEffect(() => {
+
+  //   if (userInfo || userInfo.isAdmin) {
+  //     dispatch(listMultiCoral())
+  //   }else{
+  //   history.push('/login')
+  //   }
+
+  // }, [
+  //   dispatch,
+  //   history,
+  //   userInfo,
+  //   successDelete
+  // ])
+
+
   useEffect(() => {
-    dispatch({ type: PRODUCT_CREATE_RESET })
+    dispatch({ type: TEMPERATURE_CREATE_RESET })
 
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login')
     }
 
     if (successCreate) {
-      history.push(`/admin/product/${createdProduct._id}/edit`)
+      history.push(`/admin/temperatures/${createdTemperature._id}/edit`)
     } else {
-      dispatch(listProducts('', pageNumber))
+      dispatch(listTemperatures('', pageNumber))
     }
   }, [
     dispatch,
@@ -56,30 +76,38 @@ const ProductListScreen = ({ history, match }) => {
     userInfo,
     successDelete,
     successCreate,
-    createdProduct,
+    createdTemperature,
     pageNumber,
   ])
-
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
-      dispatch(deleteProduct(id))
+      dispatch(temperatureDelete(id))
     }
   }
 
-  const createProductHandler = () => {
-    dispatch(createProduct())
+  const createTemperatureHandler = () => {
+    dispatch(createTemperature())
   }
+
+
+
 
   return (
     <>
       <Row className='align-items-center'>
         <Col>
-          <h1>Bleaching Site</h1>
+          <h1>Collected Temperature</h1>
         </Col>
         <Col className='text-right'>
-          <Button className='my-3' onClick={createProductHandler}>
-            <i className='fas fa-plus'></i> Create Site
-          </Button>
+        {/* <Button className='my-3' onClick={createCoralHandler}>
+            <i className='fas fa-plus'></i> Create Coral Data
+          </Button> */}
+          			
+			<LinkContainer to="/temperature">
+				<Nav.Link>
+					<i className="fas fa-upload" /> + CORAL TEMPERATURE
+				</Nav.Link>
+			</LinkContainer>
         </Col>
       </Row>
       {loadingDelete && <Loader />}
@@ -97,20 +125,24 @@ const ProductListScreen = ({ history, match }) => {
               <tr>
                 <th>ID</th>
                 <th>NAME</th>
-        
-                <th>CATEGORY</th>
-                <th>BRAND</th>
+                <th>3M</th>
+                <th>5.5M</th>
+                <th>9M</th>
+                <th>CREATED AT</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
+              
+               {temperatures.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>${product.price}</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
+                  <td>{product.location_name}</td>
+                  <td>{product.temp_depth_3m}</td>
+                  <td>{product.temp_depth_5_5m}</td>
+                  <td>{product.temp_depth_9m}</td>
+
+
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
                       <Button variant='light' className='btn-sm'>
@@ -127,6 +159,7 @@ const ProductListScreen = ({ history, match }) => {
                   </td>
                 </tr>
               ))}
+
             </tbody>
           </Table>
           <Paginate pages={pages} page={page} isAdmin={true} />
@@ -136,4 +169,4 @@ const ProductListScreen = ({ history, match }) => {
   )
 }
 
-export default ProductListScreen
+export default TemperatureListScreen

@@ -29,24 +29,26 @@ const Header = () => {
             <Nav className='ml-auto'>
               <LinkContainer to='/admin/map'>
                 <Nav.Link>
-                  <i className='fas fa-map'></i> CORAL MAP
+                  <i className='fas fa-map'></i> CORAL BLEACHING MAP
                 </Nav.Link>
               </LinkContainer>
 
             
-                <NavDropdown title='Field Trip Images' id='adminmenu'>
+                <NavDropdown title='Coral & Bleaching Info' id='adminmenu'>
                   <LinkContainer to='/marine'>
-                    <NavDropdown.Item>MARINE LIFE</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/field'>
-                    <NavDropdown.Item>FIELD WORK</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/NOAA'>
-                    <NavDropdown.Item>NOAA</NavDropdown.Item>
+                    <NavDropdown.Item>CORAL & MARINE LIFE</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/coral'>
-                    <NavDropdown.Item>CORAL</NavDropdown.Item>
+                    <NavDropdown.Item>CORAL BLEACHING</NavDropdown.Item>
                   </LinkContainer>
+                  <LinkContainer to='/NOAA'>
+                    <NavDropdown.Item>NOAA CORAL REEF WATCH</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/field'>
+                    <NavDropdown.Item>FIELD OBSERVATIONS</NavDropdown.Item>
+                  </LinkContainer>
+
+
                 </NavDropdown>
             
 
@@ -73,10 +75,13 @@ const Header = () => {
                     <NavDropdown.Item>USERS</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>STUDY AREA</NavDropdown.Item>
+                    <NavDropdown.Item>BLEACHING SITE</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/admin/coralarealist'>
-                    <NavDropdown.Item>BLEACH AREAS</NavDropdown.Item>
+                    <NavDropdown.Item>BLEACH BLEACHING DATA</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/temperaturelist'>
+                    <NavDropdown.Item>TEMPERATURE</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               )}

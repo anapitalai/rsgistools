@@ -94,7 +94,7 @@ const CoralListScreen = ({ history, match }) => {
     <>
       <Row className='align-items-center'>
         <Col>
-          <h1>Coral Bleached Areas</h1>
+          <h1>Coral Bleaching Data</h1>
         </Col>
         <Col className='text-right'>
         {/* <Button className='my-3' onClick={createCoralHandler}>

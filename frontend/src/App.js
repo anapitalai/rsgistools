@@ -33,6 +33,7 @@ import MarineLifeScreen from './screens/MarineLifeScreen'
 import CoralLifeScreen from './screens/CoralLifeScreen'
 import FieldScreen from './screens/FieldScreen'
 import NOAAScreen from './screens/NOAAScreen'
+import TemperatureListScreen from './screens/TemperaureListScreen'
 
 import UploadImageScreen from './screens/UploadImageScreen'
 
@@ -60,6 +61,8 @@ const App = () => {
           <Route path='/admin/multi' component={AddMultiPolygonCoral} />
 
           <Route path='/admin/coralarealist' component={CoralAreaListScreen} />
+          <Route path='/admin/temperaturelist' component={TemperatureListScreen} />
+ 
 
           <Route path='/admin/user/:id/edit' component={UserEditScreen} />
 

@@ -36,7 +36,7 @@ app.use('/api/stores',storeRoutes)
 app.use('/api/corals',coralRoutes)
 app.use('/api/multipolygon',coralMultipolygonRoutes)
 app.use('/api/products', productRoutes)
-app.use('/api/temperatures', temperatureRoutes)
+app.use('/api/temperature', temperatureRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)
@@ -64,7 +64,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(notFound)
 app.use(errorHandler)
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5007
 
 app.listen(
   PORT,

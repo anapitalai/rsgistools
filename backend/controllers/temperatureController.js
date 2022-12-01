@@ -28,29 +28,29 @@ const getTemperatures = asyncHandler(async (req, res) => {
 // @desc    Fetch single product
 // @route   GET /api/products/:id
 // @access  Public
-const getProductById = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id)
+const getTemperatureById = asyncHandler(async (req, res) => {
+  const temperature = await Temperature.findById(req.params.id)
 
-  if (product) {
-    res.json(product)
+  if (temperature) {
+    res.json(temperature)
   } else {
     res.status(404)
-    throw new Error('Product not found')
+    throw new Error('Temperature not found')
   }
 })
 
 // @desc    Delete a product
 // @route   DELETE /api/products/:id
 // @access  Private/Admin
-const deleteProduct = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id)
+const deleteTemperature = asyncHandler(async (req, res) => {
+  const temperature = await Temperature.findById(req.params.id)
 
-  if (product) {
-    await product.remove()
-    res.json({ message: 'Product removed' })
+  if (temperature) {
+    await temperature.remove()
+    res.json({ message: 'Temperature removed' })
   } else {
     res.status(404)
-    throw new Error('Product not found')
+    throw new Error('Temperature not found')
   }
 })
 
@@ -58,14 +58,48 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @route   POST /api/temperatures
 // @access  Private/Admin
 const createTemperature = asyncHandler(async (req, res) => {
-  const temperature = new Temperature({
-    temperature: 26,
-    reflectance: 122343
-  })
+	const { location_name,latitude,longitude,date,time,temp_depth_3m,temp_depth_5_5m,temp_depth_9m } = req.body;
 
-  const createdTemperature = await temperature.save()
-  res.status(201).json(createdTemperature)
-})
+	const location = {
+		type: 'Point',
+		coordinates: [ longitude, latitude ]
+	};
+
+	console.log(req.body);
+	const temperatureExists = await Temperature.findOne({ date });
+
+	if (temperatureExists) {
+		res.status(400);
+		throw new Error('Temperature data already exists');
+	}
+
+	const temperature = await Temperature.create({
+    date,
+    time,
+    location_name,
+    location,
+		temp_depth_3m,
+    temp_depth_5_5m,
+    temp_depth_9m,
+	});
+
+
+	if (temperature) {
+		res.status(201).json({
+			_id: temperature._id,
+			date: temperature.date,
+      time:temperature.time,
+      location_name:temperature.location_name,
+      location:temperature.location,
+      temp_depth_3m:temperature.temp_depth_3m,
+      temp_depth_5_5m:temperature.temp_depth_5_5m,
+      temp_depth_9m:temperature.temp_depth_9m
+		});
+	} else {
+		res.status(400);
+		throw new Error('Invalid temperature data');
+	}
+});
 
 // @desc    Update a product
 // @route   PUT /api/products/:id
@@ -152,8 +186,9 @@ const getTopProducts = asyncHandler(async (req, res) => {
 
 export {
   getTemperatures,
-  getProductById,
-  deleteProduct,
+  getTemperatureById,
+
+  deleteTemperature,
   createTemperature,
   updateProduct,
   createProductReview,

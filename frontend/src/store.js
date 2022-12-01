@@ -61,6 +61,18 @@ import {
   orderListReducer,
 } from './reducers/orderReducers'
 
+import {
+  temperatureCreateReducer,
+  temperatureDeleteReducer,
+  // orderDetailsReducer,
+  // orderPayReducer,
+  // orderDeliverReducer,
+  temperatureListReducer,
+  // orderListReducer,
+} from './reducers/temperatureReducers'
+
+
+
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
@@ -72,12 +84,9 @@ const reducer = combineReducers({
 
   //added
   storeList: storeListReducer,
-  //productDetails: productDetailsReducer,
-  //productDelete: productDeleteReducer,
+
   storeCreate: storeCreateReducer,
-  //productUpdate: productUpdateReducer,
-  //productReviewCreate: productReviewCreateReducer,
-  //productTopRated: productTopRatedReducer,
+
   coralList: coralListReducer,
   coralCreate: coralCreateReducer,
   coralDetails: coralDetailsReducer,
@@ -85,7 +94,10 @@ const reducer = combineReducers({
   coralMultiList: coralMultiListReducer,
   coralDelete: coralDeleteReducer,
   coralMultiCreate: coralMultiCreateReducer,
-  //
+  
+  temperatureList: temperatureListReducer,
+  temperatureCreate  : temperatureCreateReducer,
+  temperatureDelete: temperatureDeleteReducer,
 
   cart: cartReducer,
   userLogin: userLoginReducer,

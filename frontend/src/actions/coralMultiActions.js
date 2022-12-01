@@ -40,7 +40,7 @@ export const listMultiCoral = (keyword = '', pageNumber = '') => async (
     })
 //logger 
     // console.log('DB coral data',data.corals[0].features[0].properties.coralId)
-    console.log('DB',data)
+    console.log('DB Coral',data)
 
   } catch (error) {
     dispatch({
