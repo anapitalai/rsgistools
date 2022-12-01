@@ -43,6 +43,87 @@ const NOAACarousel = () => {
             </Carousel.Caption>
           </Link>
         </CarouselItem>
+        <CarouselItem>
+        <Link to=''>
+            <Image src='/noaa/NOAA_BleachngAlertArea_Pacific_20112022.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+              NOAA Sea Surface Temperature on the 20th of November 2022
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </CarouselItem>
+        <CarouselItem>
+        <Link to=''>
+            <Image src='/noaa/NOAA_BleachngAlertArea_Pacific_20112022.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+              NOAA Sea Surface Temperature on the 20th of November 2022
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </CarouselItem>
+        <CarouselItem>
+        <Link to=''>
+            <Image src='/noaa/NOAA_BleachngAlertArea_Pacific_20112022.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+              NOAA Sea Surface Temperature on the 20th of November 2022
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </CarouselItem>
+        <CarouselItem>
+        <Link to=''>
+            <Image src='/noaa/NOAA_BleachngAlertArea_Pacific_20112022.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+              NOAA Sea Surface Temperature on the 20th of November 2022
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </CarouselItem>
+        <CarouselItem>
+        <Link to=''>
+            <Image src='/noaa/NOAA_BleachngAlertArea_Pacific_20112022.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+              NOAA Sea Surface Temperature on the 20th of November 2022
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </CarouselItem>
+        <CarouselItem>
+        <Link to=''>
+            <Image src='/noaa/NOAA_BleachngAlertArea_Pacific_20112022.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+              NOAA Sea Surface Temperature on the 20th of November 2022
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </CarouselItem>
+        <CarouselItem>
+        <Link to=''>
+            <Image src='/noaa/NOAA_BleachngAlertArea_Pacific_20112022.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+              NOAA Sea Surface Temperature on the 20th of November 2022
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </CarouselItem>
+        <CarouselItem>
+        <Link to=''>
+            <Image src='/noaa/NOAA_BleachngAlertArea_Pacific_20112022.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+              NOAA Sea Surface Temperature on the 20th of November 2022
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </CarouselItem>
+        
     </Carousel>
   )
 }

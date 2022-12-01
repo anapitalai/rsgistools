@@ -36,7 +36,7 @@ function MapScreen({ history, match }) {
 		longitude: 147.864312,
 		width: '100vw',
 		height: '100vh',
-		zoom: 16,
+		zoom: 15,
 		// pitch:180
 	});
 	
@@ -189,7 +189,7 @@ const [onCoralHover,setonCoralHover] = useState(null)
 					<i className="fas fa-upload" /> + CORAL DATA
 				</Nav.Link>
 			</LinkContainer>
-			<SideBar />	
+			{/* <SideBar />	 */}
 			<ReactMapGL
 				initialViewState={{ ...viewport }}
 				mapboxAccessToken="pk.eyJ1IjoiYW5hcGl0YWxhaSIsImEiOiJjbDdlYzRjNjQwOXUxM3dwbGNxd3V5bDN3In0.QsuXMK_1u4kBZEht5QaO3w"

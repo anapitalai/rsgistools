@@ -24,7 +24,7 @@ const MortalityCarousel = () => {
     <Carousel pause='hover' className='bg-dark'>
                   <Carousel.Item key='z'>
           <Link to='#'>
-            <Image src='/coral/recovery.JPG' alt='product.name' fluid />
+            <Image src='/coral/bleaching1.JPG' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
                 Recovering bleached Coral
@@ -35,10 +35,10 @@ const MortalityCarousel = () => {
         </Carousel.Item>
             <Carousel.Item key='v'>
           <Link to=''>
-            <Image src='/coral/cbnm.jpg' alt='product.name' fluid />
+            <Image src='/coral/bleaching3.JPG' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
-                Bleached Coral
+                Bleached Corals
               </h2>
             </Carousel.Caption>
           </Link>
@@ -46,10 +46,20 @@ const MortalityCarousel = () => {
         </Carousel.Item>
         <CarouselItem>
         <Link to=''>
-            <Image src='/coral/cbnm3.jpg' alt='product.name' fluid />
+            <Image src='/coral/bleaching2.JPG' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
                 Bleach Coral Species
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </CarouselItem>
+        <CarouselItem>
+        <Link to=''>
+            <Image src='/coral/bleaching.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+                Severely Bleached Coral Species
               </h2>
             </Carousel.Caption>
           </Link>
