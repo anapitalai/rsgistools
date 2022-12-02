@@ -97,7 +97,7 @@ const ProductEditScreen = ({ match, history }) => {
         Go Back
       </Link>
       <FormContainer>
-        <h1>Edit Product</h1>
+        <h1>Edit Area</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
@@ -115,7 +115,7 @@ const ProductEditScreen = ({ match, history }) => {
                 onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
-
+{/* 
             <Form.Group controlId='price'>
               <Form.Label>Price</Form.Label>
               <Form.Control
@@ -124,7 +124,7 @@ const ProductEditScreen = ({ match, history }) => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group controlId='image'>
               <Form.Label>Image</Form.Label>
@@ -143,7 +143,7 @@ const ProductEditScreen = ({ match, history }) => {
               {uploading && <Loader />}
             </Form.Group>
 
-            <Form.Group controlId='brand'>
+            {/* <Form.Group controlId='brand'>
               <Form.Label>Brand</Form.Label>
               <Form.Control
                 type='text'
@@ -151,8 +151,8 @@ const ProductEditScreen = ({ match, history }) => {
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
               ></Form.Control>
-            </Form.Group>
-
+            </Form.Group> */}
+{/* 
             <Form.Group controlId='countInStock'>
               <Form.Label>Count In Stock</Form.Label>
               <Form.Control
@@ -161,9 +161,9 @@ const ProductEditScreen = ({ match, history }) => {
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
               ></Form.Control>
-            </Form.Group>
+            </Form.Group> */}
 
-            <Form.Group controlId='category'>
+            {/* <Form.Group controlId='category'>
               <Form.Label>Category</Form.Label>
               <Form.Control
                 type='text'
@@ -171,7 +171,7 @@ const ProductEditScreen = ({ match, history }) => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               ></Form.Control>
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group controlId='description'>
               <Form.Label>Description</Form.Label>

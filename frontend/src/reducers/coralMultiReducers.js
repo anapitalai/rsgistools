@@ -24,10 +24,10 @@ import {
   // PRODUCT_TOP_FAIL,
 } from '../constants/coralMultiConstants'
 
-export const coralMultiListReducer = (state = { corals: {} }, action) => {
+export const coralMultiListReducer = (state = { corals: [] }, action) => {
   switch (action.type) {
     case CORALMULTI_LIST_REQUEST:
-      return { loading: true, corals: {} }
+      return { loading: true, corals: [] }
     case CORALMULTI_LIST_SUCCESS:
       return {
         loading: false,

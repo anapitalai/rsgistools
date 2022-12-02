@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col ,Container} from 'react-bootstrap'
 import Product from '../components/Product'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -27,8 +27,8 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
-    
-
+    <Container>
+     
       <Meta />
       {!keyword ? (
         <ProductCarousel />
@@ -37,7 +37,7 @@ const HomeScreen = ({ match }) => {
           Go Back
         </Link>
       )}
-      <h1>Project Areas </h1>
+      {/* <h1>Project Areas </h1>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -57,9 +57,13 @@ const HomeScreen = ({ match }) => {
             keyword={keyword ? keyword : ''}
           />
         </>
-      )}
+      )} */}
+
+      </Container>
     </>
   )
 }
 
 export default HomeScreen
+
+

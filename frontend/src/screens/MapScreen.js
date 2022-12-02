@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Row, Nav,Col } from 'react-bootstrap';
+import { Row, Nav,Col,Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import Message from '../components/Message'
@@ -13,6 +13,8 @@ import { listStores } from '../actions/storeActions';
 import {listMultiCoral} from '../actions/coralMultiActions';
 import ControlPanel from '../components/map-components/ControlPanel';
 import {listTemperatures} from '../actions/temperatureActions';
+import CoralSearchBox from '../components/CoralSearchBox'
+import {Route} from 'react-router-dom'
 
 
 const pointLayer = {
@@ -27,6 +29,7 @@ const pointLayer = {
 
 
 function MapScreen({ history, match }) {
+	const keyword = match.params.keyword
 
 	const [pointData, setPointData] = useState(null);
 
@@ -34,8 +37,8 @@ function MapScreen({ history, match }) {
 	const [ viewport, setViewport ] = useState({
 		latitude: -6.635908,
 		longitude: 147.864312,
-		width: '100vw',
-		height: '100vh',
+		// width: '100vw',
+		// height: '100vh',
 		zoom: 15,
 		// pitch:180
 	});
@@ -60,10 +63,10 @@ function MapScreen({ history, match }) {
 	
 	useEffect(
 		() => {
-			dispatch(listMultiCoral());
+			dispatch(listMultiCoral(keyword));
 	       console.log('corals',corals)
 		},
-		[ dispatch ]
+		[ dispatch , keyword]
 	);
 
 		
@@ -96,9 +99,11 @@ function MapScreen({ history, match }) {
 		}
 	};
 
-
+ {corals.map((n)=>{
+	 
+ })}
 	const severeLayer:FillLayer={
-		id:"severe",
+		id:"CBD_Mask_1122_Severe",
 		type:"fill",
 		source:"route",
 		paint:{
@@ -123,7 +128,7 @@ function MapScreen({ history, match }) {
 		}
 	}
 	const moderateLayer:FillLayer={
-		id:"moderate",
+		id:"CBD_Mask_1122_Moderate",
 		type:"fill",
 		source:"route",
 		paint:{
@@ -136,9 +141,10 @@ function MapScreen({ history, match }) {
 
 	
 	const lowLayer:FillLayer={
-		id:"low",
+		id:'low',
 		type:"fill",
 		source:"route",
+		beforeId:"moderate",
 		paint:{
 			'fill-outline-color': '#F2F12D',  
 			'fill-color': '#F2F12D', //orange
@@ -146,17 +152,6 @@ function MapScreen({ history, match }) {
 		}
 	}
 
-		
-	const mildLayer:FillLayer={
-		id:"mild",
-		type:"fill",
-		source:"route",
-		paint:{
-			'fill-outline-color': '#008899',  
-			'fill-color': '#F2F12D', //orange
-			'fill-opacity': 1.0
-		}
-	}
 
 	const geomLayer:FillLayer={
 		id:"geom",
@@ -173,9 +168,10 @@ function MapScreen({ history, match }) {
 	//onHover functionality
 const [onHover,setonHover] =useState(null)
 const [onCoralHover,setonCoralHover] = useState(null)
+const layers=['lowLayer','moderateLayer','severeLayer']
 
 	return (
-		<div className="">
+		<div className="map">
  
 			<LinkContainer to="/store">
 				<Nav.Link>
@@ -186,14 +182,17 @@ const [onCoralHover,setonCoralHover] = useState(null)
 			
 			<LinkContainer to="/admin/multi">
 				<Nav.Link>
-					<i className="fas fa-upload" /> + CORAL DATA
+					<i className="fas fa-upload" /> + BLEACHING DATA
 				</Nav.Link>
 			</LinkContainer>
-			{/* <SideBar />	 */}
+			            <Route render={({ history }) => <CoralSearchBox history={history} />} />
+
 			<ReactMapGL
+			
 				initialViewState={{ ...viewport }}
 				mapboxAccessToken="pk.eyJ1IjoiYW5hcGl0YWxhaSIsImEiOiJjbDdlYzRjNjQwOXUxM3dwbGNxd3V5bDN3In0.QsuXMK_1u4kBZEht5QaO3w"
-				style={{ width: 1000, height: 1000 }}
+				style={{ width:1000, height: 1000 }}
+			
 				mapStyle="mapbox://styles/anapitalai/cl8dw9b8f000d14rtgqhu1exx"
 			    onHover={onHover}
 				onViewportChange={(viewport) => {
@@ -222,22 +221,35 @@ const [onCoralHover,setonCoralHover] = useState(null)
 		onMouseLeave={()=>{
 		setonHover(null)}} 
 		className='marker' src="/t.jpeg" />
-		{/* <i class="fa-solid fa-temperature-three-quarters"></i> */}
 </Marker>
 
 ))}</>)}
-                 
-                 {/* <Source id="low" type="geojson" data={corals[2]} >
+
+				 {/* {corals.map(m=>(					 	
+					 <Source id={m.name} type="geojson" data={m} >
+
+					 <Layer {...severeLayer} />
+					 <Layer {...moderateLayer} />
+					 <Layer {...lowLayer} />
+
+		          </Source> 
+				 ))} */}
+
+				 <Source id="low" type="geojson" data={corals[2]} >
                           <Layer
                             {...lowLayer} />
-                     </Source> 
+                </Source> 
 
-				<Source id="moderate" type="geojson" data={corals[1]} >
+				<Source id="moderate" type="geojson" data={corals[1]} > 
 				<Layer {...moderateLayer} /> 
-				</Source>  */}
+				</Source> 
 				 <Source id="severe" type="geojson" data={corals[0]} >
-				 <Layer {...severeLayer} />
+					
+						 <Layer {...severeLayer} />
+					 
+				 
 				 </Source> 
+
 
 
 				 {pointData && (

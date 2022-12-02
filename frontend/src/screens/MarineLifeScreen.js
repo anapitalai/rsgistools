@@ -12,8 +12,8 @@ const MarineLifeScreen = () => {
         
    
            <MarineLifeCarousel />
-           <h1>Coral Mortality and Bleaching</h1>
-           <p>Some images of coral life and bleaching that were taken on the visited site area.</p>
+           <h1>Coral Species and Marine Life</h1>
+           <p>Some images of coral and marine life that were taken on the visited site area.</p>
 
 
         </div>

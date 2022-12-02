@@ -11,11 +11,8 @@ const FieldScreen = () => {
         <div>
 
            <FieldTripCarousel />
-           <h1>Field Trip</h1>
+           <h1>Field Work</h1>
            <p>Ground truthing data was collected from the site area over a period of two days.</p>
-
-
-
 
         </div>
     )

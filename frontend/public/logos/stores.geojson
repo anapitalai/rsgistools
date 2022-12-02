@@ -1,0 +1,29 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "storeId":"001",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          147.53952026367188,
+          -6.614136562876452
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "storeId":"002",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          147.59994506835938,
+          -6.702798381193014
+        ]
+      }
+    }
+  ]
+}

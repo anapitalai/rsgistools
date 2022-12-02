@@ -1,7 +1,7 @@
 {
-  "name": "proshop",
+  "name": "geocow",
   "version": "1.0.0",
-  "description": "MERN shopping cart app",
+  "description": "Coral watch app",
   "main": "server.js",
   "type": "module",
   "scripts": {

@@ -31,7 +31,7 @@ export const listMultiCoral = (keyword = '', pageNumber = '') => async (
     dispatch({ type: CORALMULTI_LIST_REQUEST })
 
     const { data } = await axios.get(
-      `/api/multipolygon`
+      `/api/multipolygon?keyword=${keyword}`
     )
 
     dispatch({

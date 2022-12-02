@@ -27,7 +27,7 @@ const MortalityCarousel = () => {
             <Image src='/coral/bleaching1.JPG' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
-                Recovering bleached Coral
+                Recovering Bleached Coral
               </h2>
             </Carousel.Caption>
           </Link>
@@ -49,7 +49,7 @@ const MortalityCarousel = () => {
             <Image src='/coral/bleaching2.JPG' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
-                Bleach Coral Species
+                Coral Species
               </h2>
             </Carousel.Caption>
           </Link>

@@ -24,60 +24,143 @@ const FieldTripCarousel = () => {
     <Carousel pause='hover' className='bg-dark'>
            <Carousel.Item key='id'>
           <Link to='#'>
-            <Image src='/field/dive2.webp' alt='product.name' fluid />
+            <Image src='/field/line_transect_measurement/op1.jpg' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
-                Some Field Measurements
+                Line Transect Measurement
               </h2>
             </Carousel.Caption>
           </Link>
         </Carousel.Item>
 
-       <Carousel.Item key='_i'>
-          <Link to=''>
-            <Image src='/field/dive3.webp' alt='product.name' fluid />
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/line_transect_measurement/op2.jpg' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
-                Measurements
+                Line Transect Measurement
               </h2>
             </Carousel.Caption>
           </Link>
         </Carousel.Item>
 
-       <Carousel.Item key='d'>
-          <Link to=''>
-            <Image src='/field/dive4.webp' alt='product.name' fluid />
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/line_transect_measurement/op3.jpg' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
-                Field Measurements
+                Line Transect Measurement
               </h2>
             </Carousel.Caption>
           </Link>
         </Carousel.Item>
 
-
-
-          <Carousel.Item key='a'>
-          <Link to=''>
-            <Image src='/field/drone.webp' alt='product.name' fluid />
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/line_transect_measurement/op4.jpg' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
-                Mavic Drone Used
+                Line Transect Measurement
               </h2>
             </Carousel.Caption>
           </Link>
-
         </Carousel.Item>
-        <CarouselItem>
-        <Link to=''>
-            <Image src='/field/gps.webp' alt='product.name' fluid />
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/line_transect_measurement/op5.jpg' alt='product.name' fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
-                GPS Temperature Logger Location
+                Line Transect Measurement
               </h2>
             </Carousel.Caption>
           </Link>
-        </CarouselItem>
+        </Carousel.Item>
+
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/line_transect_measurement/op6.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+                Line Transect Measurement
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </Carousel.Item>
+
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/line_transect_measurement/op7.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+                Line Transect Measurement
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </Carousel.Item>
+
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/line_transect_measurement/op8.jpg' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+                Line Transect Measurement
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </Carousel.Item>
+        {/* next */}
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/temperature_profile_measurement/op1.JPG' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+                Temperature Profile Measurement
+              </h2>
+            </Carousel.Caption>
+          </Link>
+        </Carousel.Item>
+
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/temperature_profile_measurement/op2.JPG' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+Temperature Profile Measurement              </h2>
+            </Carousel.Caption>
+          </Link>
+        </Carousel.Item>
+
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/temperature_profile_measurement/op3.JPG' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+Temperature Profile Measurement              </h2>
+            </Carousel.Caption>
+          </Link>
+        </Carousel.Item>
+
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/temperature_profile_measurement/op4.JPG' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+Temperature Profile Measurement              </h2>
+            </Carousel.Caption>
+          </Link>
+        </Carousel.Item>
+        <Carousel.Item key='id'>
+          <Link to='#'>
+            <Image src='/field/temperature_profile_measurement/op5.JPG' alt='product.name' fluid />
+            <Carousel.Caption className='carousel-caption'>
+              <h2>
+Temperature Profile Measurement             
+ </h2>
+            </Carousel.Caption>
+          </Link>
+        </Carousel.Item>
+        
+
     </Carousel>
   )
 }

@@ -20,9 +20,6 @@ const getCoralMultipolygons = asyncHandler(async (req, res) => {
 		const corals = await Coral.find({ ...keyword }).limit(pageSize).skip(pageSize * (page - 1));
        
 		
-	
-
-
 
 	 res.json({ corals, page, pages: Math.ceil(count / pageSize) });
 

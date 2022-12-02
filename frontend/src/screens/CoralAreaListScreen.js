@@ -103,7 +103,7 @@ const CoralListScreen = ({ history, match }) => {
           			
 			<LinkContainer to="/admin/multi">
 				<Nav.Link>
-					<i className="fas fa-upload" /> + CORAL DATA
+					<i className="fas fa-upload" /> + BLEACHING DATA
 				</Nav.Link>
 			</LinkContainer>
         </Col>
@@ -123,7 +123,6 @@ const CoralListScreen = ({ history, match }) => {
               <tr>
                 <th>ID</th>
                 <th>NAME</th>
-                <th>CREATED AT</th>
                 <th></th>
               </tr>
             </thead>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
-const SearchBox = ({ history }) => {
+const CoralSearchBox = ({ history }) => {
   const [keyword, setKeyword] = useState('')
 
   const submitHandler = (e) => {
@@ -9,7 +9,7 @@ const SearchBox = ({ history }) => {
     if (keyword.trim()) {
       history.push(`/search/${keyword}`)
     } else {
-      history.push('/')
+      history.push('/admin/map')
     }
   }
 
@@ -19,7 +19,7 @@ const SearchBox = ({ history }) => {
         type='text'
         name='q'
         onChange={(e) => setKeyword(e.target.value)}
-        placeholder='Search Products...'
+        placeholder='Search Coral Data...'
         className='mr-sm-2 ml-sm-5'
       ></Form.Control>
       <Button type='submit' variant='outline-success' className='p-2'>
@@ -29,4 +29,4 @@ const SearchBox = ({ history }) => {
   )
 }
 
-export default SearchBox
+export default CoralSearchBox
