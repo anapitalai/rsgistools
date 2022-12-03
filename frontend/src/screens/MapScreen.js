@@ -15,17 +15,11 @@ import ControlPanel from '../components/map-components/ControlPanel';
 import {listTemperatures} from '../actions/temperatureActions';
 import CoralSearchBox from '../components/CoralSearchBox'
 import {Route} from 'react-router-dom'
+import LegendPanel from '../components/map-components/LegendPanel';
 
+import CoralPanel from '../components/map-components/CoralPanel';
+import {lowLayer9,moderateLayer9,severeLayer9,lowLayer10,moderateLayer10,severeLayer10,lowLayer11,moderateLayer11,severeLayer11,pointLayer} from '../components/map-components/MapStyle'
 
-const pointLayer = {
-	id: 'point',
-	type: 'circle',
-	paint: {
-	  'circle-radius': 10,
-	  'circle-color': '#007cbf'
-	  //'circle-color' : '#000'
-	}
-  };
 
 
 function MapScreen({ history, match }) {
@@ -37,8 +31,8 @@ function MapScreen({ history, match }) {
 	const [ viewport, setViewport ] = useState({
 		latitude: -6.635908,
 		longitude: 147.864312,
-		// width: '100vw',
-		// height: '100vh',
+		width: '100vw',
+		 height: '100vh',
 		zoom: 15,
 		// pitch:180
 	});
@@ -60,7 +54,7 @@ function MapScreen({ history, match }) {
 	const userLogin = useSelector((state) => state.userLogin);
 	const {userInfo} = userLogin
 
-	
+
 	useEffect(
 		() => {
 			dispatch(listMultiCoral(keyword));
@@ -90,94 +84,31 @@ function MapScreen({ history, match }) {
 
 
 
-	const layerStyle = {
-		id: 'point',
-		type: 'circle',
-		paint: {
-			'circle-radius': 5,
-			'circle-color': '#fff'
-		}
-	};
-
- {corals.map((n)=>{
-	 
- })}
-	const severeLayer:FillLayer={
-		id:"CBD_Mask_1122_Severe",
-		type:"fill",
-		source:"route",
-		paint:{
-			'fill-outline-color': '#FF0000',
-			'fill-color': '#FF0000',  //red  
-			'fill-opacity': 0.85
-		}
-	}
-	const b22Layer:FillLayer={
-		id:"b22",
-		type:"fill",
-		source:"route",
-		'fill-outline-color': '#000000',
-		'fill-color': '#cc599f',
-		'fill-opacity': 0.11,
-
-		paint:{
-			'fill-outline-color': '#664433',
-			'fill-color': '#fe599f',
-			'fill-opacity': 0.75
-			
-		}
-	}
-	const moderateLayer:FillLayer={
-		id:"CBD_Mask_1122_Moderate",
-		type:"fill",
-		source:"route",
-		paint:{
-			'fill-outline-color': '#FFA500',  
-			'fill-color': '#FFA500', //yellow
-			'fill-opacity': 0.55
-		}
-	}
-
-
-	
-	const lowLayer:FillLayer={
-		id:'low',
-		type:"fill",
-		source:"route",
-		beforeId:"moderate",
-		paint:{
-			'fill-outline-color': '#F2F12D',  
-			'fill-color': '#F2F12D', //orange
-			'fill-opacity': 1.0
-		}
-	}
-
-
-	const geomLayer:FillLayer={
-		id:"geom",
-		type:"fill",
-		source:"route",
-		paint: {
-			'fill-outline-color': '#484896',
-			'fill-color': '#6e599f',
-			'fill-opacity': 0.75
-		  }
-	}
-
-
 	//onHover functionality
 const [onHover,setonHover] =useState(null)
 const [onCoralHover,setonCoralHover] = useState(null)
-const layers=['lowLayer','moderateLayer','severeLayer']
+
+const cbleach = useMemo(()=>{return corals},[corals])
+
+// const coral_markers = useMemo(() => corals.map(m => (
+//     <Source key={m._id} type="geojson" data={m}>
+    
+//       {/* <Layer id={m._id} source='route' type='fill' paint={{'fill-color':'yellow'}} /> */}
+// 	  	<Layer {...severeLayer} />
+//     </Source>	
+// 	)
+//   ), [corals]);
+
+  const [mapStyle, setMapStyle] = useState(null);
 
 	return (
 		<div className="map">
  
-			<LinkContainer to="/store">
+			{/* <LinkContainer to="/store">
 				<Nav.Link>
 					<i className="fas fa-upload" /> + STUDY AREA
 				</Nav.Link>
-			</LinkContainer>
+			</LinkContainer> */}
 
 			
 			<LinkContainer to="/admin/multi">
@@ -192,7 +123,7 @@ const layers=['lowLayer','moderateLayer','severeLayer']
 				initialViewState={{ ...viewport }}
 				mapboxAccessToken="pk.eyJ1IjoiYW5hcGl0YWxhaSIsImEiOiJjbDdlYzRjNjQwOXUxM3dwbGNxd3V5bDN3In0.QsuXMK_1u4kBZEht5QaO3w"
 				style={{ width:1000, height: 1000 }}
-			
+
 				mapStyle="mapbox://styles/anapitalai/cl8dw9b8f000d14rtgqhu1exx"
 			    onHover={onHover}
 				onViewportChange={(viewport) => {
@@ -225,6 +156,10 @@ const layers=['lowLayer','moderateLayer','severeLayer']
 
 ))}</>)}
 
+
+
+
+
 				 {/* {corals.map(m=>(					 	
 					 <Source id={m.name} type="geojson" data={m} >
 
@@ -233,22 +168,46 @@ const layers=['lowLayer','moderateLayer','severeLayer']
 					 <Layer {...lowLayer} />
 
 		          </Source> 
+
+
 				 ))} */}
 
-				 <Source id="low" type="geojson" data={corals[2]} >
-                          <Layer
-                            {...lowLayer} />
-                </Source> 
 
-				<Source id="moderate" type="geojson" data={corals[1]} > 
-				<Layer {...moderateLayer} /> 
+
+				<Source id="low11" type="geojson" data={cbleach[2]} >
+                <Layer {...lowLayer11} />
+                </Source> 
+				<Source id="moderate11" type="geojson" data={cbleach[1]} > 
+				<Layer {...moderateLayer11} /> 
 				</Source> 
-				 <Source id="severe" type="geojson" data={corals[0]} >
-					
-						 <Layer {...severeLayer} />
-					 
-				 
-				 </Source> 
+                 
+				<Source id="severe11" type="geojson" data={cbleach[0]} >
+				<Layer {...severeLayer11} />
+				</Source> 
+
+                {/* <Source id="low10" type="geojson" data={cbleach[5]} >
+                <Layer {...lowLayer10} />
+                </Source> 
+				<Source id="moderate10" type="geojson" data={cbleach[4]} > 
+				<Layer {...moderateLayer10} /> 
+				</Source> 
+				<Source id="severe10" type="geojson" data={cbleach[3]} >
+				<Layer {...severeLayer10} />
+				</Source>  
+                
+
+
+                <Source id="low9" type="geojson" data={cbleach[2]} >
+                <Layer {...lowLayer9} />
+                </Source> 
+				<Source id="moderate9" type="geojson" data={cbleach[1]} > 
+				<Layer {...moderateLayer9} /> 
+				</Source> 
+				<Source id="severe9" type="geojson" data={cbleach[0]} >
+				<Layer {...severeLayer9} />
+				</Source>
+ */}
+
 
 
 
@@ -261,6 +220,7 @@ const layers=['lowLayer','moderateLayer','severeLayer']
 
 <NavigationControl position="top-left" />
 <FullscreenControl />
+<LegendPanel />
 
 
 
@@ -269,8 +229,9 @@ const layers=['lowLayer','moderateLayer','severeLayer']
                                   latitude={onHover.location.coordinates[1]}
                                   longitude={onHover.location.coordinates[0]}
                                   anchor="bottom" >
-							<h4> {onHover.location_name} Temperature Data</h4><h5>{onHover.date}</h5>
-							<h4>{onHover.time}</h4>
+							<h5> {onHover.location_name} Temperature Data</h5>
+							{/* <h5>{onHover.date}</h5> */}
+							{/* <h4>{onHover.time}</h4> */}
 							   <h5>{onHover.temp_depth_3m}M @3M</h5>
 							   <h5>{onHover.temp_depth_5_5m}M @5.5M</h5>
 							   <h5>{onHover.temp_depth_9m}M @9M</h5>

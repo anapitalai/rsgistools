@@ -88,7 +88,7 @@ h2 {
 
 .legend-panel {
   position: absolute;
-  bottom: 0;
+  bottom: 200;
   right: 0;
   max-width: 320px;
   background: #fff;
@@ -97,7 +97,7 @@ h2 {
   margin: 20px;
   font-size: 13px;
   line-height: 2;
-  color: #6b6b76;
+  color: #766b74;
   outline: none;
   text-transform: uppercase;
 }

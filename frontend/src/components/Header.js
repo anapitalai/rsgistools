@@ -78,7 +78,7 @@ const Header = () => {
                     <NavDropdown.Item>BLEACHING SITE</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/admin/coralarealist'>
-                    <NavDropdown.Item>BLEACH BLEACHING DATA</NavDropdown.Item>
+                    <NavDropdown.Item>BLEACHING DATA</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/admin/temperaturelist'>
                     <NavDropdown.Item>TEMPERATURE</NavDropdown.Item>

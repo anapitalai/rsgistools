@@ -121,8 +121,8 @@ const CoralListScreen = ({ history, match }) => {
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>
-                <th>ID</th>
                 <th>NAME</th>
+                <th>DATE</th>
                 <th></th>
               </tr>
             </thead>
@@ -134,7 +134,7 @@ const CoralListScreen = ({ history, match }) => {
                   <td>{product.createdAt}</td>
 
                   <td>
-                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                    <LinkContainer to={`#`}>
                       <Button variant='light' className='btn-sm'>
                         <i className='fas fa-edit'></i>
                       </Button>
