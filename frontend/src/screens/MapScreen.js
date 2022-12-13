@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo,lazy, Suspense } from 'react';
 import { Row, Nav,Col,Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -20,7 +20,7 @@ import LegendPanel from '../components/map-components/LegendPanel';
 import CoralPanel from '../components/map-components/CoralPanel';
 import {lowLayer9,moderateLayer9,severeLayer9,lowLayer10,moderateLayer10,severeLayer10,lowLayer11,moderateLayer11,severeLayer11,pointLayer} from '../components/map-components/MapStyle'
 
-
+const layers=[lowLayer9,moderateLayer10]
 
 function MapScreen({ history, match }) {
 	const keyword = match.params.keyword
@@ -31,12 +31,19 @@ function MapScreen({ history, match }) {
 	const [ viewport, setViewport ] = useState({
 		latitude: -6.635908,
 		longitude: 147.864312,
-		width: '100vw',
-		 height: '100vh',
+		// width: '100vw',
+		//  height: '100vh',
+		height: window.innerHeight,
+		width: window.innerWidth,
 		zoom: 15,
 		// pitch:180
-	});
+
+	},
+
 	
+	);
+	
+
 	const pageNumber = match.params.pageNumber || 1;
 
 	const dispatch = useDispatch();
@@ -57,11 +64,11 @@ function MapScreen({ history, match }) {
 
 	useEffect(
 		() => {
-			dispatch(listMultiCoral(keyword));
+		dispatch(listMultiCoral(keyword))
 	       console.log('corals',corals)
 		},
 		[ dispatch , keyword]
-	);
+	)
 
 		
 	useEffect(
@@ -88,16 +95,22 @@ function MapScreen({ history, match }) {
 const [onHover,setonHover] =useState(null)
 const [onCoralHover,setonCoralHover] = useState(null)
 
-const cbleach = useMemo(()=>{return corals},[corals])
+//const cbleach = useMemo(()=>{return corals},[corals])
 
-// const coral_markers = useMemo(() => corals.map(m => (
-//     <Source key={m._id} type="geojson" data={m}>
-    
-//       {/* <Layer id={m._id} source='route' type='fill' paint={{'fill-color':'yellow'}} /> */}
-// 	  	<Layer {...severeLayer} />
-//     </Source>	
-// 	)
-//   ), [corals]);
+  
+  
+const coral_markers = useMemo(() => corals.map((m,index )=> (
+	
+<Source key={m._id} type="geojson" data={m}>
+
+{m.name == "CBD_1122_Severe" ? (<Layer  source='route' type='fill' 
+paint={{"fill-color":'red',"fill-opacity": 0.8}} />) : (m.name =="CBD_1122_Moderate" ? <Layer  source='route' type='fill'  
+paint={{"fill-color":'orange',"fill-opacity": 0.8}} /> : <Layer  source='route' type='fill'  
+paint={{"fill-color":'yellow',"fill-opacity": 0.8}} />)}
+          		
+    </Source>	
+	)
+  ), [corals]);
 
   const [mapStyle, setMapStyle] = useState(null);
 
@@ -122,7 +135,7 @@ const cbleach = useMemo(()=>{return corals},[corals])
 			
 				initialViewState={{ ...viewport }}
 				mapboxAccessToken="pk.eyJ1IjoiYW5hcGl0YWxhaSIsImEiOiJjbDdlYzRjNjQwOXUxM3dwbGNxd3V5bDN3In0.QsuXMK_1u4kBZEht5QaO3w"
-				style={{ width:1000, height: 1000 }}
+				style={{ width:1000, height: 1000} }
 
 				mapStyle="mapbox://styles/anapitalai/cl8dw9b8f000d14rtgqhu1exx"
 			    onHover={onHover}
@@ -130,18 +143,6 @@ const cbleach = useMemo(()=>{return corals},[corals])
 					setViewport(viewport);
 				}}
 			>
-{/* 
-				{loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message>) :(<>{stores.map(s => (
-
-					<Marker key={s.storeId} latitude={s.location.coordinates[1]} longitude={s.location.coordinates[0]}>
-						<img onMouseEnter={()=>{
-							setonHover(s)	}}
-							onMouseLeave={()=>{
-							setonHover(null)}} 
-							className='marker' src="/a.png" />
-					</Marker>
-				 
-				))}</>)} */}
 
 
 {loadingTemperature ? (<Loader />) : error ? (<Message variant='danger'>{errorTemperature}</Message>) :(<>{temperatures.map(s => (
@@ -157,57 +158,7 @@ const cbleach = useMemo(()=>{return corals},[corals])
 ))}</>)}
 
 
-
-
-
-				 {/* {corals.map(m=>(					 	
-					 <Source id={m.name} type="geojson" data={m} >
-
-					 <Layer {...severeLayer} />
-					 <Layer {...moderateLayer} />
-					 <Layer {...lowLayer} />
-
-		          </Source> 
-
-
-				 ))} */}
-
-
-
-				<Source id="low11" type="geojson" data={cbleach[2]} >
-                <Layer {...lowLayer11} />
-                </Source> 
-				<Source id="moderate11" type="geojson" data={cbleach[1]} > 
-				<Layer {...moderateLayer11} /> 
-				</Source> 
-                 
-				<Source id="severe11" type="geojson" data={cbleach[0]} >
-				<Layer {...severeLayer11} />
-				</Source> 
-
-                {/* <Source id="low10" type="geojson" data={cbleach[5]} >
-                <Layer {...lowLayer10} />
-                </Source> 
-				<Source id="moderate10" type="geojson" data={cbleach[4]} > 
-				<Layer {...moderateLayer10} /> 
-				</Source> 
-				<Source id="severe10" type="geojson" data={cbleach[3]} >
-				<Layer {...severeLayer10} />
-				</Source>  
-                
-
-
-                <Source id="low9" type="geojson" data={cbleach[2]} >
-                <Layer {...lowLayer9} />
-                </Source> 
-				<Source id="moderate9" type="geojson" data={cbleach[1]} > 
-				<Layer {...moderateLayer9} /> 
-				</Source> 
-				<Source id="severe9" type="geojson" data={cbleach[0]} >
-				<Layer {...severeLayer9} />
-				</Source>
- */}
-
+{coral_markers}
 
 
 

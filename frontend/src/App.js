@@ -24,7 +24,7 @@ import CoralAreaListScreen from './screens/CoralAreaListScreen'
 // just added
 
 import MapScreen from './screens/MapScreen'
-import AddStoreScreen from './screens/AddStoreScreen'
+import AddProductScreen from './screens/AddProductScreen'
 import AddCoralScreen from './screens/AddCoralScreen'
 
 import AddTemperatureScreen from './screens/AddTemperatureScreen'
@@ -50,7 +50,7 @@ const App = () => {
           <Route path='/payment' component={PaymentScreen} />
           <Route path='/placeorder' component={PlaceOrderScreen} />
           <Route path='/login' component={LoginScreen} />
-          <Route path='/store' component={AddStoreScreen} />
+          <Route path='/add' component={AddProductScreen} />
           <Route path='/temperature' component={AddTemperatureScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />

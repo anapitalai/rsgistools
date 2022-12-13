@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { findConfigFile } from 'typescript'
 import {
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
@@ -24,15 +25,17 @@ import {
 } from '../constants/productConstants'
 import { logout } from './userActions'
 
-export const listProducts = (keyword = '', pageNumber = '') => async (
+export const listProducts = () => async (
   dispatch
 ) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST })
 
     const { data } = await axios.get(
-      `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+      '/api/products'
     )
+
+    console.log('python api',data)
 
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -106,7 +109,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
   }
 }
 
-export const createProduct = () => async (dispatch, getState) => {
+export const createProduct = (image) => async (dispatch, getState) => {
   try {
     dispatch({
       type: PRODUCT_CREATE_REQUEST,
@@ -122,7 +125,7 @@ export const createProduct = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/products`, {}, config)
+    const { data } = await axios.post(`/api/upload`, {},config)
 
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,

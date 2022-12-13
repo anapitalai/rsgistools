@@ -1,0 +1,3 @@
+Flask===0.10.1
+numy==1.22.3
+gunicorn
