@@ -5,25 +5,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-//import { createCoralMultipolygon } from '../actions/coralMultiActions'
+import axios from 'axios'
 
 import {
-  listMultiCoral,
-  createCoralMultipolygon
-} from '../actions/coralMultiActions'
+  createStore
+} from '../actions/storeActions'
 
 
-import { CORALMULTI_CREATE_RESET } from '../constants/coralMultiConstants'
+import { STORE_CREATE_RESET } from '../constants/storeConstants'
 
 
-const AddProductScreen = ({ location, history,match }) => {
+const AddStoreScreen = ({ location, history,match }) => {
   const pageNumber = match.params.pageNumber || 1
 
   const dispatch = useDispatch()
 
   const userRegister = useSelector((state) => state.userRegister)
-  //const { loading, error, userInfo } = userRegister
-
+ 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   const coralCreate = useSelector((state) => state.coralCreate)
@@ -40,7 +38,7 @@ const AddProductScreen = ({ location, history,match }) => {
 
 
   useEffect(() => {
-    dispatch({ type: CORALMULTI_CREATE_RESET })
+    dispatch({ type: STORE_CREATE_RESET })
 
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login')
@@ -49,7 +47,7 @@ const AddProductScreen = ({ location, history,match }) => {
     if (successCreate) {
       history.push('/admin/map')
     } else {
-      dispatch(listMultiCoral('', pageNumber))
+      //dispatch(listMultiCoral('', pageNumber))
     }
   }, [
     dispatch,
@@ -60,27 +58,35 @@ const AddProductScreen = ({ location, history,match }) => {
     pageNumber,
   ])
 
-  const [files, setFiles] = useState("");
+  const [image, setImage] = useState("");
+  const [uploading,setUploading]=useState('')
 
-  const submitHandler = (e) => {
-    e.preventDefault()
-    const fileReader = new FileReader()
-    fileReader.readAsText(e.target.files[0],'UTF-8')
-    fileReader.onload = e => {
-      console.log("e.target.result", e.target.result);
-      const geo=e.target.result
-      setFiles(geo); 
-      const result=JSON.parse(geo);
-      console.log('XXX',result)
-      dispatch(createCoralMultipolygon(result.name,result.features))
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
 
-    };
-    
-  }   
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+
+      const { data } = await axios.post('/api/upload', formData, config)
+
+      setImage(data)
+      setUploading(false)
+    } catch (error) {
+      console.error(error)
+      setUploading(false)
+    }
+  }
   return (
     
     <FormContainer>
-      <h1>Upload MultiPolygon Coral Data</h1>
+      <h1>Upload A Store Image For Machine Learning</h1>
       {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
   {loadingCreate && <Loader />}  
       <Form>
@@ -89,8 +95,9 @@ const AddProductScreen = ({ location, history,match }) => {
           <Form.Control
             type='file'
             placeholder='Select data'
-            onChange={submitHandler}         
+            onChange={uploadFileHandler}         
           ></Form.Control>
+          {uploading && <Loader />}
         </Form.Group>
         <Button type='submit' variant='primary'>
           Upload
@@ -101,4 +108,4 @@ const AddProductScreen = ({ location, history,match }) => {
   )
 }
 
-export default AddProductScreen
+export default AddStoreScreen

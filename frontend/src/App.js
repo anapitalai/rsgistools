@@ -19,6 +19,7 @@ import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
 import CoralAreaListScreen from './screens/CoralAreaListScreen'
+import AddStoreScreen from './screens/AddStoreScreen'
 
 
 // just added
@@ -58,7 +59,7 @@ const App = () => {
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/admin/userlist' component={UserListScreen} />
-          <Route path='/admin/multi' component={AddMultiPolygonCoral} />
+          <Route path='/admin/store' component={AddStoreScreen} />
 
           <Route path='/admin/coralarealist' component={CoralAreaListScreen} />
           <Route path='/admin/temperaturelist' component={TemperatureListScreen} />

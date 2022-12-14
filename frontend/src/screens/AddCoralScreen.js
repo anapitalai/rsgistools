@@ -53,8 +53,8 @@ const AddCoralScreen = ({ location, history }) => {
       const coralId= result.features[0].properties.coralId
       const coralArea= result.features[0].properties.coralArea
       const coordinates=result.features[0].geometry.coordinates
-      console.log(coralId,coralArea)
-      console.log(coordinates)
+      // console.log(coralId,coralArea)
+      // console.log(coordinates)
 
       dispatch(createCoral(coralId,coralArea,coordinates))
 

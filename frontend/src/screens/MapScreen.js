@@ -9,7 +9,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { dataLayer } from '../map-style'
 import axios from 'axios';
 import SideBar from '../components/map-components/SideBar';
-import { listStores } from '../actions/storeActions';
+
 import {listMultiCoral} from '../actions/coralMultiActions';
 import ControlPanel from '../components/map-components/ControlPanel';
 import {listTemperatures} from '../actions/temperatureActions';
@@ -82,7 +82,7 @@ function MapScreen({ history, match }) {
 
 	useEffect(
 		() => {
-			dispatch(listStores());
+			//dispatch(listStores());
 			console.log('stores',stores)
 
 		},

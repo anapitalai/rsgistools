@@ -13,13 +13,9 @@ import {
 
 
 import {
-  storeListReducer,
-  // storeDetailsReducer,
-  // productDeleteReducer,
+
   storeCreateReducer,
-  // productUpdateReducer,
-  // productReviewCreateReducer,
-  // productTopRatedReducer,
+
 } from './reducers/storeReducers'
 
 
@@ -83,8 +79,6 @@ const reducer = combineReducers({
   productTopRated: productTopRatedReducer,
 
   //added
-  storeList: storeListReducer,
-
   storeCreate: storeCreateReducer,
 
   coralList: coralListReducer,

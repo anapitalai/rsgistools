@@ -115,17 +115,17 @@ export const createProduct = (image) => async (dispatch, getState) => {
       type: PRODUCT_CREATE_REQUEST,
     })
 
-    const {
-      userLogin: { userInfo },
-    } = getState()
+    // const {
+    //   userLogin: { userInfo },
+    // } = getState()
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    }
+    // const config = {
+    //   headers: {
+    //     Authorization: `Bearer ${userInfo.token}`,
+    //   },
+    // }
 
-    const { data } = await axios.post(`/api/upload`, {},config)
+    const { data } = await axios.post(`http://localhost:5001/api/upload`, {image},{ mode: 'cors' })
 
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
@@ -145,6 +145,8 @@ export const createProduct = (image) => async (dispatch, getState) => {
     })
   }
 }
+
+
 
 export const updateProduct = (product) => async (dispatch, getState) => {
   try {
